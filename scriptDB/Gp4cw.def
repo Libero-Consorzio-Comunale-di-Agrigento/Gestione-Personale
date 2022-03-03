@@ -1,0 +1,8 @@
+//
+// File .DEF per Base Dati Generale Progetto GP4 Modulo Cerificato Word
+// --------------------------------------------------------------------------
+
+     ,INSTALL,sql,,B,P00chk.sql           ,[usr], Verifica esistenza user di progetto
+     ,INSTALL,sql,,I,Gp4cw_ins.sql        ,     , Abilitazione delle voci di menù
+     ,INSTALL,sql,,I,Gp4CW_ins_modelli.sql,     , Installazione parametri personalizzati del modulo
+     ,INSTALL,sql,,I,crp_PCWSWFAP.sql     ,     , Creazione del package del modulo

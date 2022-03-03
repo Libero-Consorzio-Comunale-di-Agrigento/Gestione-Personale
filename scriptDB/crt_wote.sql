@@ -1,0 +1,20 @@
+CREATE GLOBAL TEMPORARY TABLE WORD_TEMP
+(
+  SEQUENZA          NUMBER,
+  DATI_0            VARCHAR2(4000),
+  DATI_1            VARCHAR2(4000),
+  DATI_2            VARCHAR2(4000),
+  DATI_3            VARCHAR2(4000),
+  DATI_4            VARCHAR2(4000),
+  DATI_5            VARCHAR2(4000),
+  DATI_6            VARCHAR2(4000),
+  DATI_7            VARCHAR2(4000),
+  DATI_8            VARCHAR2(4000),
+  DATI_9            VARCHAR2(4000),
+  DATI_10           VARCHAR2(4000),
+  DATI_11           VARCHAR2(4000),
+  DATI_12           VARCHAR2(4000),
+  DATI_13           VARCHAR2(4000),
+  DATI_14           VARCHAR2(4000),
+  WOTE_ID   VARCHAR2(50) NOT NULL
+);

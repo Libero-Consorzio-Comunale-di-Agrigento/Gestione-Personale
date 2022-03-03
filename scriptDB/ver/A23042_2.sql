@@ -1,0 +1,3 @@
+start crp_peccmore8.sql
+start crp_peccmore9.sql
+start crp_peccmore_ritenuta.sql

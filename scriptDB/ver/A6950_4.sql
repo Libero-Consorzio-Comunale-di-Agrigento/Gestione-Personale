@@ -1,0 +1,2 @@
+-- incluso nel file A6944
+-- start crp_gp4gm.sql

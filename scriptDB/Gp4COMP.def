@@ -1,0 +1,5 @@
+//
+// Ricompilazione di Oggetti sul DataBase
+       ,ALLTIME,sql, ,I,comp_all.sql            ,      , Ricompilazione cautelativa dei Packages sulla Base dati
+       ,REFRESH,sql, ,I,comp_all.sql            ,      , Ricompilazione cautelativa dei Packages sulla Base dati
+       ,ALLTIME,sql, ,I,comp_all_log.sql        ,      , LOG Esecuzione Procedure di validazione oggetti DB

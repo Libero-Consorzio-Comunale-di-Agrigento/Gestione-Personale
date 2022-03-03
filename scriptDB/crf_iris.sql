@@ -1,0 +1,14 @@
+start crf_ANAG_INMO_TMA.sql
+start crf_FAMI_INMO_TMA.sql
+start crf_FIGI_INMO_TMA.sql
+start crf_INRE_INMO_TMA.sql
+start crf_PEGI_INMO_TMA.sql
+start crf_POSI_INMO_TMA.sql
+start crf_QUGI_INMO_TMA.sql
+start crf_UNOR_INMO_TMA.sql
+start crf_RIFU_INMO_TMA.sql
+start crf_RQMI_INMO_TMA.sql
+start crf_SEDI_INMO_TMA.sql
+start crf_unor_inmo_tma_pu.sql
+start crf_iris_cagi_tiu.sql
+start crf_iris_caev_tiu.sql

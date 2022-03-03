@@ -1,0 +1,25 @@
+start crp_gp4_ANAG
+start crp_gp4_ASTE
+start crp_gp4_COMP
+start crp_gp4_COMU
+start crp_gp4_COST
+start crp_gp4_DOOR
+start crp_gp4_ENTE
+start crp_gp4_FIGI
+start crp_gp4_GEAM
+start crp_gp4_GEST
+start crp_gp4_PEGI
+start crp_gp4_POSI
+start crp_gp4_QUGI
+start crp_gp4_RAIN
+start crp_gp4_REDO
+start crp_gp4_REST
+start crp_gp4_RIDO
+start crp_gp4_SDAM
+start crp_gp4_SEPR
+start crp_gp4_STAM
+start crp_gp4_SUST
+start crp_gp4_TIIN
+start crp_gp4_UNOR
+start crp_gp4_evgi
+

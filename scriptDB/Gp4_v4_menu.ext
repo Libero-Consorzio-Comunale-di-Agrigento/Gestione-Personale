@@ -1,0 +1,5 @@
+FILE=Gp4_ins_v4_menu.sql
+SET TERMOUT OFF 
+TABLE=A_APPLICAZIONI where applicazione = 'GP4'
+TABLE=A_MENU where applicazione = 'GP4' and ruolo = '*'
+WHENEVER SQLERROR CONTINUE

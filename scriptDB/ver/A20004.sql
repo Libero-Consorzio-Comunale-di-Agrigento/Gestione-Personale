@@ -1,0 +1,1 @@
+alter table anagrafici add (GRUPPO_LING_PREF VARCHAR2(4));

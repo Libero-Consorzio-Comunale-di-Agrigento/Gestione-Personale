@@ -1,0 +1,11 @@
+start crp_ACACANAS.sql
+start crp_acacanrp.sql
+start crp_contapag.sql
+start crp_leggi_file.sql
+start crp_OBJECT_DATA.sql
+start crp_post_handler.sql
+start crp_save_si4_accesso.sql
+start crp_SI4_BASE64.sql
+start crp_SI4_ERROR_LOG.sql
+start crp_SI4SCHED.sql
+start crp_WEBUTIL_DB.sql

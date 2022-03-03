@@ -1,0 +1,10 @@
+delete from a_selezioni
+where voce_menu = 'PECCARFI'
+and parametro ='P_ANNO_SFASATO';
+INSERT INTO A_SELEZIONI ( PARAMETRO, VOCE_MENU, SEQUENZA, DESCRIZIONE, DESCRIZIONE_AL1,
+DESCRIZIONE_AL2, LUNGHEZZA, FORMATO, OBBLIGO, VALORE_DEFAULT, DOMINIO, ALIAS, GRUPPO_ALIAS,
+NUMERO_FK ) VALUES ( 
+'P_ANNO_SFASATO', 'PECCARFI', 7, 'Anno Prev. da Nov.(note cas.6)', NULL, NULL, 1
+, 'U', 'N', NULL, 'P_X', NULL, NULL, NULL); 
+start crp_peccnocu.sql
+start crp_peccarfi.sql

@@ -1,0 +1,3 @@
+start crp_peccmore_autofam.sql
+start crp_peccmore2.sql
+start crp_peccmore12.sql

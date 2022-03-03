@@ -1,0 +1,4 @@
+FILE=Gp4po_ins.sql
+SET TERMOUT OFF
+TABLE=a_menu where applicazione='GP4' and ruolo='AMM' and voce_menu like 'PPO%'
+WHENEVER SQLERROR CONTINUE

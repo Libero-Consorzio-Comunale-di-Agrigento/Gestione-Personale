@@ -1,0 +1,5 @@
+drop INDEX agin_PK;
+
+CREATE UNIQUE INDEX AGIN_PK ON AGENTI_INFORTUNIO
+(causa,agente )
+;

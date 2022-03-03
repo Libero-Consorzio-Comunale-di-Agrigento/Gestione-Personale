@@ -1,0 +1,7 @@
+CREATE TABLE APPOGGIO_ERRORI_GP4
+(
+  CI         NUMBER(8)                          NOT NULL,
+  ERRORE     VARCHAR2(6),
+  BLOCCANTE  VARCHAR2(2),
+  FASE       VARCHAR2(5)
+);

@@ -1,0 +1,77 @@
+// ******************************************************************************
+// NOME:        afcKC.def
+// DESCRIZIONE: File .DEF per generazione "Base Dati Appoggio" per gestione
+//              Constraint Error e Multilinguismo, indipendente da Ad4.
+//
+// ANNOTAZIONI: Da includere nei file della propria installazione con attivazione 
+//              dal componente "KC - Base Dati di Appoggio Prodotto" del file .INF
+//
+//
+// ISTRUZIONI:  - Includere i componenti AFC                nella cartella "ins\ver\afc"
+//
+//              - Includere i componenti AFC\kc             nella cartella "ins\ver\afc\kc"
+//
+//              - Spostare i file afcKC.def e afcKCDef.sql  nella cartella "ins"
+//
+//              
+// REVISIONI:
+// Rev.  Data        Autore  Descrizione
+// ----  ----------  ------  ----------------------------------------------------
+// 1     23/02/2006  MF      Inclusione della gestione delle Revisioni.
+// 2     08/09/2006  MF      Eliminazione dipendenza da file installazione di Ad4.
+// 3     13/02/2007  MF      Richiamo errato a "IntegtyPackage" invece di "IntegrityPackage".
+//
+// ******************************************************************************
+
+
+,ALLTIME,sql, ,C,\ins\ver\afc\DbC.pks           , ,Creazione DbC Package Specification
+,ALLTIME,sql, ,C,\ins\ver\afc\DbC.pkb           , ,Creazione DbC Package Body
+,ALLTIME,sql, ,C,\ins\ver\afc\AFC.pks           , ,Creazione AFC Package Specification
+,ALLTIME,sql, ,C,\ins\ver\afc\AFC.pkb           , ,Creazione AFC Package Body
+ 
+,ALLTIME,sql, ,C,\ins\ver\afc\kc\keyPackage.pks , ,Creazione KEYPackage Package Specification
+,INSTALL,sql, ,C,\ins\ver\afc\kc\afcKC.sql      , ,Creazione Tables KEY_CONSTRAINTs Error e Multilingua
+,ALLTIME,sql, ,C,\ins\ver\afc\kc\Si4.pkg        , ,Creazione SI4 Package
+,ALLTIME,sql, ,C,\ins\ver\afc\kc\keyPackage.pkb , ,Creazione KEYPackage Package Body
+
+,INSTALL,sql,O,C,keco_ins.sql|afckcDef.sql      , ,Caricamento Registrazioni in Tables KEY_CONSTRAINTs
+
+
+// Package necessari in caso di adozione progettazione con "Table Package" Standard
+// ================================================================================
+
+,ALLTIME,sql, ,C,\ins\ver\afc\AFC_Error.pks     , ,Creazione AFC_Error Package Specification
+,ALLTIME,sql, ,C,\ins\ver\afc\AFC_Error.pkb     , ,Creazione AFC_Error Package Body
+,ALLTIME,sql, ,C,\ins\ver\afc\AFC_DDL.pks       , ,Creazione AFC_DDL Package Specification
+,ALLTIME,sql, ,C,\ins\ver\afc\AFC_DDL.pkb       , ,Creazione AFC_DDL Package Body
+,ALLTIME,sql, ,C,\ins\ver\afc\AFC_DML.pks       , ,Creazione AFC_DML Package Specification
+,ALLTIME,sql, ,C,\ins\ver\afc\AFC_DML.pkb       , ,Creazione AFC_DML Package Body
+
+
+// IntegrityPackage e UtilityPackage
+// =================================
+// ( vengono generati in versione ridotta da PowerDesigner )
+
+,ALLTIME,sql, ,C,\ins\ver\afc\IntegrityPackage.pkg, ,Creazione IntegrityPackage
+,ALLTIME,sql, ,C,\ins\ver\afc\UtilityPackage.pkg, ,Creazione UtilityPackage
+
+
+// Altri Package da generare se utilizzati
+// =======================================
+
+// ServerError: Gestione degli Errori provenienti dal DB
+// ------------
+,ALLTIME,sql, ,C,\ins\ver\afc\kc\ServerError_Handler.pks, ,Creazione ServerError_Handler Package Specification
+,ALLTIME,sql, ,C,\ins\ver\afc\kc\ServerError_Handler.pkb, ,Creazione ServerError_Handler Package Body
+,ALLTIME,sql, ,C,\ins\ver\afc\kc\ServerError_Trigger.trg, ,Creazione ServerError_Handler Trigger
+
+
+// AFC_Periodo: Gestione Storica dei Periodi
+// -----------
+// ,ALLTIME,sql, ,C,\ins\ver\afc\AFC_Periodo.pkg , ,Creazione AFC_Periodo Package
+
+// AFC_HTML: Utility per produzione oggetti HTML
+// --------
+// ,ALLTIME,sql, ,C,\ins\ver\afc\AFC_HTML.pkg, ,Creazione AFC_HTML Package
+
+

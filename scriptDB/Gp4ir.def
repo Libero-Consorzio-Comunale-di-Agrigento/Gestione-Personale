@@ -1,0 +1,15 @@
+//
+// File .DEF per Base Dati Generale Progetto GP4 Modulo Integrazione con Iris
+// --------------------------------------------------------------------------
+
+ ,INSTALL,sql,,B,P00chk.sql           ,[usr], Verifica esistenza user di progetto
+ ,INSTALL,sql,,I,Gp4ir_ins.sql        ,     , Abilitazione delle voci di menù
+ ,INSTALL,sql,,I,Gp4ir_c.sql          ,     , Creazione degli oggetti del modulo
+
+ ,INSTALL,sql,,I,\ins\crs_iris_rp1.sql ,[usr] $3 , Grant Tra MondoEdp e user Intermedio P00RP,$1,$2
+ ,INSTALL,sql,,I,\ins\crs_iris.sql     , $3 $1 , Oggetti su P00 da MondoEdp e da user Intermedio
+ ,INSTALL,sql,,I,\ins\crg_iris_p00.sql , $1 , Grant da P00 a user Intermedio
+ ,INSTALL,sql,,I,\ins\crs_iris_rp2.sql ,[usr], Grant Da P00 a user Intermedio P00RP,$1,$2
+
+// Fasi attivate in ogni Upgrade 
+     ,UPGRADE,sql, ,I,\ins\ver\Gp4_pir_upg.sql  ,     , Attivazione eventuali upgrade per modulo IR

@@ -1,0 +1,25 @@
+SET SCAN OFF
+REM
+REM TABLE
+REM      DEF_GESTIONE_DENUNCE
+REM INDEX
+REM     DGED_PK
+REM
+REM     DGED - Definizione Gestione per Denunce
+
+PROMPT 
+PROMPT Creating Table DEF_GESTIONE_DENUNCE
+CREATE TABLE DEF_GESTIONE_DENUNCE
+(  contratto       VARCHAR2(4) NOT NULL
+ , posizione       VARCHAR2(4) NOT NULL
+ , gestione        VARCHAR2(8)
+);
+
+COMMENT ON TABLE DEF_GESTIONE_DENUNCE
+    IS 'DGED - Definizione Gestione per Denunce';
+
+PROMPT
+PROMPT Creating Index DGED_PK on Table DEF_GESTIONE_DENUNCE
+CREATE UNIQUE INDEX DGED_PK on DEF_GESTIONE_DENUNCE
+( contratto, posizione 
+);

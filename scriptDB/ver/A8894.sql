@@ -1,0 +1,4 @@
+INSERT INTO A_ERRORI ( ERRORE, DESCRIZIONE, DESCRIZIONE_AL1, DESCRIZIONE_AL2,
+PROPRIETA ) VALUES ( 
+'P05639', 'Gli Oneri Deducibili devono essere soggetti a Fiscale', NULL, NULL, NULL); 
+

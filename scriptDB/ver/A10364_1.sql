@@ -1,0 +1,14 @@
+CREATE TABLE PEGI_A10364_1 (DESCRIZIONE      VARCHAR2 (500));
+
+
+start aggiorno_A10364_1.sql
+
+BEGIN
+   aggiorno_A10364_1.main;
+END;
+/
+
+UPDATE A_GUIDE_O
+SET    TITOLO ='el.suBen.'
+WHERE  GUIDA_O='P_PEGI_F'
+AND    ALIAS = 'VISU';

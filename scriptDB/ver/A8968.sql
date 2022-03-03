@@ -1,0 +1,1 @@
+start crp_cursore_fiscale.sql

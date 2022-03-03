@@ -1,0 +1,107 @@
+INSERT INTO A_DOMINI_SELEZIONI ( DOMINIO, VALORE_LOW, VALORE_HIGH, DESCRIZIONE, DESCRIZIONE_AL1,
+DESCRIZIONE_AL2 ) VALUES ( 
+'D_LVADM', 'D', NULL, 'Stampa Dettaglio Individuale', NULL, NULL); 
+INSERT INTO A_DOMINI_SELEZIONI ( DOMINIO, VALORE_LOW, VALORE_HIGH, DESCRIZIONE, DESCRIZIONE_AL1,
+DESCRIZIONE_AL2 ) VALUES ( 
+'D_LVADM', 'Q', NULL, 'Stampa Quadrature', NULL, NULL); 
+INSERT INTO A_DOMINI_SELEZIONI ( DOMINIO, VALORE_LOW, VALORE_HIGH, DESCRIZIONE, DESCRIZIONE_AL1,
+DESCRIZIONE_AL2 ) VALUES ( 
+'D_LVADM', 'T', NULL, 'Solo Totali', NULL, NULL); 
+
+INSERT INTO A_GUIDE_O ( GUIDA_O, SEQUENZA, ALIAS, LETTERA, LETTERA_AL1, LETTERA_AL2, TITOLO,
+TITOLO_AL1, TITOLO_AL2, GUIDA_V, VOCE_MENU, VOCE_RIF, PROPRIETA, TITOLO_ESTESO, TITOLO_ESTESO_AL1,
+TITOLO_ESTESO_AL2 ) VALUES ( 
+'P_LVADM', 1, 'PREN', 'P', NULL, NULL, 'Pren.', NULL, NULL, NULL, 'ACAEPRPA', '*'
+, NULL, 'Prenotazioni', NULL, NULL);
+INSERT INTO A_GUIDE_O ( GUIDA_O, SEQUENZA, ALIAS, LETTERA, LETTERA_AL1, LETTERA_AL2, TITOLO,
+TITOLO_AL1, TITOLO_AL2, GUIDA_V, VOCE_MENU, VOCE_RIF, PROPRIETA, TITOLO_ESTESO, TITOLO_ESTESO_AL1,
+TITOLO_ESTESO_AL2 ) VALUES ( 
+'P_LVADM', 2, 'GEST', 'G', NULL, NULL, 'Gestioni', NULL, NULL, NULL, 'PGMEGEST', NULL
+, NULL, NULL, NULL, NULL); 
+
+INSERT INTO A_CATALOGO_STAMPE ( STAMPA, TITOLO, TITOLO_AL1, TITOLO_AL2, TIPO_PROPRIETA, TIPO_VISURA,
+CLASSE, STAMPA_BLOCCATA, STAMPA_PROTETTA, SEQUENZIALE ) VALUES ( 
+'PECLVADM', 'Lista Verifiche Annuali DMA', NULL, NULL, 'U', 'U', 'A_C', 'N', 'N', 'S'); 
+
+INSERT INTO A_VOCI_MENU ( VOCE_MENU, AMBIENTE, ACRONIMO, ACRONIMO_AL1, ACRONIMO_AL2, TITOLO,
+TITOLO_AL1, TITOLO_AL2, TIPO_VOCE, TIPO, MODULO, STRINGA, IMPORTANZA, GUIDA_O,
+PROPRIETA ) VALUES ( 
+'PECLVADM', 'P00', 'LVADM', NULL, NULL, 'Lista Verifiche Annuali DMA', NULL, NULL
+, 'F', 'D', 'ACAPARPR', NULL, 1, 'P_LVADM', NULL); 
+
+INSERT INTO A_SELEZIONI ( PARAMETRO, VOCE_MENU, SEQUENZA, DESCRIZIONE, DESCRIZIONE_AL1,
+DESCRIZIONE_AL2, LUNGHEZZA, FORMATO, OBBLIGO, VALORE_DEFAULT, DOMINIO, ALIAS, GRUPPO_ALIAS,
+NUMERO_FK ) VALUES ( 
+'P_ANNO', 'PECLVADM', 1, 'Elaborazione Anno: ...........', NULL, NULL, 4, 'N', 'N'
+, NULL, NULL, NULL, NULL, NULL); 
+INSERT INTO A_SELEZIONI ( PARAMETRO, VOCE_MENU, SEQUENZA, DESCRIZIONE, DESCRIZIONE_AL1,
+DESCRIZIONE_AL2, LUNGHEZZA, FORMATO, OBBLIGO, VALORE_DEFAULT, DOMINIO, ALIAS, GRUPPO_ALIAS,
+NUMERO_FK ) VALUES ( 
+'P_GESTIONE', 'PECLVADM', 2, 'Gestione: ....................', NULL, NULL, 8, 'U'
+, 'N', '%', NULL, 'GEST', 1, 1); 
+INSERT INTO A_SELEZIONI ( PARAMETRO, VOCE_MENU, SEQUENZA, DESCRIZIONE, DESCRIZIONE_AL1,
+DESCRIZIONE_AL2, LUNGHEZZA, FORMATO, OBBLIGO, VALORE_DEFAULT, DOMINIO, ALIAS, GRUPPO_ALIAS,
+NUMERO_FK ) VALUES ( 
+'P_TIPO', 'PECLVADM', 3, 'Tipo Elaborazione:............', NULL, NULL, 1, 'U', 'N'
+, NULL, 'D_LVADM', NULL, NULL, NULL); 
+
+INSERT INTO A_PASSI_PROC ( VOCE_MENU, PASSO, TITOLO, TITOLO_AL1, TITOLO_AL2, TIPO, MODULO, STRINGA,
+STAMPA, GRUPPO_LING ) VALUES ( 
+'PECLVADM', 1, 'Lista Verifiche Annuali DMA', NULL, NULL, 'R', 'PECLVADM', NULL, 'PECLVADM'
+, 'N');
+
+INSERT INTO A_MENU ( APPLICAZIONE, RUOLO, PADRE, FIGLIO, VOCE_MENU, SEQUENZA,
+STAMPANTE ) VALUES ( 
+'GP4', '*', 1013754, 1013833, 'PECLVADM', 6, NULL); 
+INSERT INTO A_MENU ( APPLICAZIONE, RUOLO, PADRE, FIGLIO, VOCE_MENU, SEQUENZA,
+STAMPANTE ) VALUES ( 
+'GP4', 'AMM', 1013754, 1013833, 'PECLVADM', 6, NULL); 
+INSERT INTO A_MENU ( APPLICAZIONE, RUOLO, PADRE, FIGLIO, VOCE_MENU, SEQUENZA,
+STAMPANTE ) VALUES ( 
+'GP4', 'PEC', 1013754, 1013833, 'PECLVADM', 6, NULL);
+
+insert into  estrazione_valori_contabili
+(ESTRAZIONE, COLONNA, DAL, AL, DESCRIZIONE, SEQUENZA
+)
+values ('DENUNCIA_DMA','Q_CP',to_date('01011960','ddmmyyyy'),''
+       ,'Colonna di controllo su imponibili CPDEL',500);
+insert into  estrazione_valori_contabili
+(ESTRAZIONE, COLONNA, DAL, AL, DESCRIZIONE, SEQUENZA
+)
+values ('DENUNCIA_DMA','Q_TFS',to_date('01011960','ddmmyyyy'),''
+       ,'Colonna di controllo su imponibili TFS',501);
+insert into  estrazione_valori_contabili
+(ESTRAZIONE, COLONNA, DAL, AL, DESCRIZIONE, SEQUENZA
+)
+values ('DENUNCIA_DMA','Q_TFR',to_date('01011960','ddmmyyyy'),''
+       ,'Colonna di controllo su imponibili TFR',502);
+insert into  estrazione_valori_contabili
+(ESTRAZIONE, COLONNA, DAL, AL, DESCRIZIONE, SEQUENZA
+)
+values ('DENUNCIA_DMA','Q_FPC',to_date('01011960','ddmmyyyy'),''
+       ,'Colonna di controllo su imponibili FPC',503);
+insert into  estrazione_valori_contabili
+(ESTRAZIONE, COLONNA, DAL, AL, DESCRIZIONE, SEQUENZA
+)
+values ('DENUNCIA_DMA','Q_ENPDEP',to_date('01011960','ddmmyyyy'),''
+       ,'Colonna di controllo su imponibili ENPDEP',504);
+insert into estrazione_righe_contabili
+(ESTRAZIONE, COLONNA, DAL, AL
+,SEQUENZA, VOCE, SUB, TIPO
+)
+select esvo.estrazione,esvo.colonna,esvo.dal,esvo.al
+     , rownum, disp.CONTR_VOCE, disp.CONTR_SUB, 'R'
+  from estrazione_valori_contabili esvo
+     , def_istituti_previdenziali disp
+ where esvo.estrazione = 'DENUNCIA_DMA'
+   and esvo.colonna = decode( disp.istituto
+                            , 'CPDEL'  , 'Q_CP'
+                            , 'CPI'    , 'Q_CP'
+                            , 'CPFPC'  , 'Q_FPC'
+                            , 'CPFPCI' , 'Q_FPC'
+                            , 'INADEL' , 'Q_TFS'
+                            , 'TFR'    , 'Q_TFR'
+                            , 'ENPDEP' , 'Q_ENPDEP'
+                            )
+   and disp.istituto in ('CPDEL','CPI','CPFPC','CPFPCI','INADEL','TFR','ENPDEP')
+   and disp.contr_voce is not null;

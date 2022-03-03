@@ -1,0 +1,9 @@
+//
+// File .DEF per Base Dati Generale Progetto GP4  Modulo  Integrazione con PensioniS7 INPDAP
+// -----------------------------------------------------------------------------------------
+
+     ,INSTALL,sql,,B,P00chk.sql           ,[usr], Verifica esistenza user di progetto
+     ,INSTALL,sql,,I,Gp4PI_ins.sql        ,     , abilitazione delle voci di menù del modulo
+     ,INSTALL,sql,,I,Gp4_crp_PI.sql       ,     , Creazione dei Packages del modulo
+     ,INSTALL,sql,,I,Gp4_PI_ins.sql       ,     , Creazione iniziale parametri
+     ,INSTALL,sql,,I,Gp4_del_pers_menu.sql,     , Eliminazione voci di menù già disabilitate per il Cliente

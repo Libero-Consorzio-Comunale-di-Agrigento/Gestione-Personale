@@ -1,0 +1,8 @@
+//
+// File .DEF per Base Dati Generale Progetto GP4  Modulo Integrazioni Contabile
+// -------------------------------------------------------------------------
+
+     ,INSTALL,sql,,I,\ins\intCF4_grn.sql    ,[usr] , Grant Integrazione Procedura Contabilità Finanziaria (CF4),$1,$2
+     ,INSTALL,sql,,I,\ins\intCF4_syn.sql    ,$1    , Sinonimi degli oggetti della Contabilità Finanziaria (CF4)
+     ,INSTALL,sql,,I,\ins\intCF4_synCF4.sql ,[usr] , Sinonimi degli oggeti GP4 per Contabilità Finanziaria (CF4),$1,$2
+     ,INSTALL,sql,,I,\ins\Gp4CF.sql         ,      , Creazione Oggetti DataBase locali se non creati in precedenza

@@ -1,0 +1,12 @@
+CREATE TABLE KEY_ERROR 
+(
+ ERRORE                                   VARCHAR2(6) 	NOT NULL,
+ DESCRIZIONE                              VARCHAR2(240) NOT NULL,
+ TIPO                                     VARCHAR2(1),
+ KEY                                      VARCHAR2(30),
+ PRECISAZIONE                             VARCHAR2(2000),
+ constraint KERR_PK primary key (ERRORE)
+)
+/
+COMMENT ON COLUMN KEY_ERROR.DESCRIZIONE IS 'Descrizione ERRORE <NLS>'
+/

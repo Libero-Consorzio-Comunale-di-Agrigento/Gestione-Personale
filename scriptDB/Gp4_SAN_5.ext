@@ -1,0 +1,30 @@
+FILE=Gp4_ins_san_5.sql
+SET TERMOUT OFF
+TABLE=riferimento_fine_anno
+TABLE=riferimento_organico        
+TABLE=riferimento_presenza         
+TABLE=riferimento_retribuzione     
+TABLE=righe_formula_causale        
+TABLE=righe_prospetto_presenza     
+TABLE=righe_qualifica_ministeriale
+TABLE=righe_qualifiche_statistiche 
+TABLE=righe_ripartizione_linguistica 
+TABLE=RIGHE_SETTORI_STATISTICI
+TABLE=righe_tariffa_voce           
+TABLE=ripartizione_causali         
+TABLE=ripartizione_motivi          
+TABLE=ripartizioni_contabili       
+TABLE=ripartizioni_funzionali      
+TABLE=ripartizioni_linguistiche    
+TABLE=ritenute_voce                
+TABLE=ruoli                        
+TABLE=SCADENZE_DENUNCE
+TABLE=scaglioni_assegno_familiare  
+TABLE=scaglioni_detrazione_fiscale 
+TABLE=scaglioni_fiscali            
+TABLE=sedi                         
+TABLE=sedi_provvedimento           
+TABLE=settori                      
+TABLE=sospensioni_progressione     
+TABLE=sottocodici_documento        
+WHENEVER SQLERROR CONTINUE

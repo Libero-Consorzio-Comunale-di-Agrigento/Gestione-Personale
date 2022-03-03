@@ -1,0 +1,53 @@
+REM  Objects being generated in this file are:-
+REM TABLE
+REM      TOTALI_DMA_Z2
+REM INDEX
+REM      TOZ2_PK ON 
+
+REM
+REM      TOZ2 - Totali Z2 Denuncia DMA
+REM
+PROMPT 
+PROMPT Creating Table TOTALI_DMA_Z2
+
+CREATE TABLE TOTALI_DMA_Z2
+( VDZ2_ID               NUMBER(10)      NOT NULL
+, CONTR_PENS            NUMBER(14,2)
+, CONTR_PENS_CN         NUMBER(14,2)
+, CONTR_PENS_SUD        NUMBER(14,2)
+, CONTR_PENS_CN_407     NUMBER(14,2)
+, CONTR_PENS_SUD_407    NUMBER(14,2)
+, CONTR_L135            NUMBER(14,2)
+, CONTR_SU_ECCEDENZA    NUMBER(14,2)
+, CONTR_L166            NUMBER(14,2)
+, CONTR_TFS             NUMBER(14,2)
+, CONTR_TFR             NUMBER(14,2)
+, CONTR_ULT_TFR		NUMBER(14,2)
+, CONTR_CASSA_CREDITO   NUMBER(14,2)
+, CONTR_ENPDEDP         NUMBER(14,2)
+, RISCATTO_PENS         NUMBER(14,2)
+, RICONGIUNZIONE        NUMBER(14,2)
+, RISCATTO_TFS          NUMBER(14,2)
+, MUTUO                 NUMBER(14,2)
+, PRESTITO              NUMBER(14,2)
+, RISCATTO_TFR          NUMBER(14,2)
+, RUOLO                 VARCHAR2(16)
+, VERS_NO_IPN           NUMBER(14,2)
+, SANZIONI              NUMBER(14,2)
+, ECCEDENZE             NUMBER(14,2)
+, ANTICIPAZIONI         NUMBER(14,2)
+, UTENTE                VARCHAR2 (8) 
+, TIPO_AGG              VARCHAR2 (1)
+, DATA_AGG              DATE
+);
+
+COMMENT ON TABLE TOTALI_DMA_Z2
+    IS 'TOZ2 - Totali per Record Z2 Denuncia DMA';
+
+REM 
+REM
+PROMPT
+PROMPT Creating Index TOZ2_PK on Table TOTALI_DMA_Z2
+CREATE UNIQUE INDEX TOZ2_PK ON 
+  TOTALI_DMA_Z2( VDZ2_ID);
+

@@ -1,0 +1,16 @@
+start crp_peccmocp.sql
+start crp_peccmocp1.sql
+start crp_peccmocp2.sql
+start crp_peccmocp3.sql
+start crp_peccmocp4.sql
+start crp_peccmocp5.sql
+start crp_peccmocp6.sql
+start crp_peccmocp7.sql
+start crp_peccmocp8.sql
+start crp_peccmocp9.sql
+start crp_peccmocp10.sql
+start crp_peccmocp11.sql
+start crp_peccmocp12.sql
+start crp_peccmocp_autofam.sql
+start crp_peccmocp_ritenuta.sql
+start crp_peccmocp_tariffa.sql

@@ -1,0 +1,121 @@
+REM  Objects being generated in this file are:-
+REM TABLE
+REM      DENUNCIA_DMA
+REM INDEX
+REM      DDMA_GEST_FK
+REM      DDMA_PK ON 
+REM      DDMA_PK1 ON 
+REM      DDMA_RARE_FK ON 
+
+REM
+REM      DDMA - Denuncia DMA
+REM
+PROMPT 
+PROMPT Creating Table DENUNCIA_DMA
+
+CREATE TABLE DENUNCIA_DMA 
+( DDMA_ID	          number(10)    NOT NULL,
+  ANNO                    NUMBER (4)    NOT NULL, 
+  MESE                    NUMBER (2)    NOT NULL, 
+  PREVIDENZA              VARCHAR2 (6)  NOT NULL, 
+  GESTIONE                VARCHAR2 (8), 
+  GESTIONE_APP		  VARCHAR2(8),
+  CASSA_PENSIONE          VARCHAR2 (1), 
+  CASSA_PREVIDENZA        VARCHAR2 (1), 
+  CASSA_CREDITO           VARCHAR2 (1), 
+  CASSA_ENPDEDP           VARCHAR2 (1), 
+  CI                      NUMBER (8)    NOT NULL, 
+  CODICE                  VARCHAR2 (10), 
+  POSIZIONE               VARCHAR2 (8), 
+  QUALIFICA               VARCHAR2 (6), 
+  RILEVANZA               VARCHAR2 (2)  NOT NULL, 
+  COMPETENZA              VARCHAR2 (1),
+  CAUSALE_VARIAZIONE      VARCHAR2 (1), 
+  DAL                     DATE, 
+  AL                      DATE, 
+  DATA_CESSAZIONE         DATE, 
+  FINE_SERVIZIO           NUMBER (1) NOT NULL, 
+  CAUSA_CESSAZIONE        VARCHAR2 (2), 
+  TIPO_IMPIEGO            VARCHAR2 (2), 
+  TIPO_SERVIZIO           VARCHAR2 (2), 
+  TIPO_PART_TIME          VARCHAR2 (1), 
+  PERC_PART_TIME          NUMBER (5,2), 
+  ORE_RIDOTTE		  NUMBER(3),
+  GG_UTILI                NUMBER (4), 
+  PERC_L300               NUMBER (5,2), 
+  MAGGIORAZIONI           VARCHAR2 (12), 
+  GG_MAG_1                NUMBER (3), 
+  GG_MAG_2                NUMBER (3), 
+  GG_MAG_3                NUMBER (3), 
+  GG_MAG_4                NUMBER (3), 
+  RIFERIMENTO             NUMBER (6), 
+  TIPO_ALIQUOTA           NUMBER (1), 
+  CF_AMM_FISSE            VARCHAR2 (16), 
+  COMP_FISSE              NUMBER (12,2), 
+  CF_AMM_ACC              VARCHAR2 (16), 
+  COMP_ACCESSORIE         NUMBER (12,2), 
+  MAGG_L165               NUMBER (12,2), 
+  COMP_18                 NUMBER (12,2), 
+  IND_NON_A               NUMBER (12,2), 
+  IIS_CONGLOBATA          NUMBER (12,2), 
+  IPN_PENS_PERIODO        NUMBER (12,2), 
+  CONTR_PENS_PERIODO      NUMBER (12,2), 
+  CONTR_SU_ECCEDENZA      NUMBER (12,2), 
+  IPN_TFS                 NUMBER (12,2), 
+  CONTR_TFS               NUMBER (12,2), 
+  IPN_TFR                 NUMBER (12,2), 
+  CONTR_IPN_TFR           NUMBER (12,2), 
+  ULT_IPN_TFR             NUMBER (12,2), 
+  CONTR_ULT_IPN_TFR       NUMBER (12,2), 
+  IPN_CASSA_CREDITO       NUMBER (12,2), 
+  CONTR_CASSA_CREDITO     NUMBER (12,2), 
+  CONTR_ENPDEDP           NUMBER (12,2), 
+  TREDICESIMA             NUMBER (12,2), 
+  RETR_TEORICO_TFR        NUMBER (12,2), 
+  RETR_UTILE_TFR          NUMBER (12,2), 
+  QUOTA_SOLIDARIETA_L166  NUMBER (12,2), 
+  CONTR_SOLIDARIETA_L166  NUMBER (12,2), 
+  RETR_L135               NUMBER (12,2), 
+  CONTR_SOLIDARIETA_L135  NUMBER (12,2), 
+  DATA_FINE_CALAMITA      DATE, 
+  CONTR_PENS_CALAMITA     NUMBER (12,2), 
+  CONTR_PREV_CALAMITA     NUMBER (12,2), 
+  SANZIONE_PENSIONE       NUMBER (12,2), 
+  SANZIONE_PREVIDENZA     NUMBER (12,2), 
+  SANZIONE_CREDITO        NUMBER (12,2), 
+  SANZIONE_ENPDEDP        NUMBER (12,2), 
+  TIPO_ACCERTAMENTO       VARCHAR2 (1), 
+  DATA_SANZIONI           DATE, 
+  UTENTE                  VARCHAR2 (8), 
+  TIPO_AGG                VARCHAR2 (1), 
+  DATA_AGG                DATE)
+;
+
+COMMENT ON TABLE denuncia_dma
+    IS 'DDMA - Dati relativi alla Denuncia DMA';
+
+REM 
+REM
+PROMPT
+PROMPT Creating Index DDMA_GEST_FK on Table DENUNCIA_DMA
+CREATE INDEX DDMA_GEST_FK ON 
+  DENUNCIA_DMA(GESTIONE) 
+; 
+
+PROMPT
+PROMPT Creating Index DDMA_PK on Table DENUNCIA_DMA
+CREATE UNIQUE INDEX DDMA_PK ON 
+  DENUNCIA_DMA(DDMA_ID) 
+; 
+
+PROMPT
+PROMPT Creating Index DDMA_PK1 on Table DENUNCIA_DMA
+CREATE INDEX DDMA_PK1 ON 
+  DENUNCIA_DMA(ANNO, MESE, PREVIDENZA, CI, GESTIONE, RILEVANZA, COMPETENZA, DAL) 
+; 
+
+PROMPT
+PROMPT Creating Index DDMA_RARE_FK on Table DENUNCIA_DMA
+CREATE INDEX DDMA_RARE_FK ON 
+  DENUNCIA_DMA(CI) 
+; 

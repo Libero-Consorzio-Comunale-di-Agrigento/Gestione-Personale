@@ -1,0 +1,11 @@
+INSERT INTO A_ERRORI ( ERRORE, DESCRIZIONE, DESCRIZIONE_AL1, DESCRIZIONE_AL2,
+PROPRIETA ) VALUES ( 
+'P05532', 'Rettifica. Il periodo deve essere precedente al:', NULL, NULL, NULL); 
+INSERT INTO A_ERRORI ( ERRORE, DESCRIZIONE, DESCRIZIONE_AL1, DESCRIZIONE_AL2,
+PROPRIETA ) VALUES ( 
+'P05531', 'Periodo corrente. Le date devono essere comprese tra:', NULL, NULL, NULL); 
+INSERT INTO A_ERRORI ( ERRORE, DESCRIZIONE, DESCRIZIONE_AL1, DESCRIZIONE_AL2,
+PROPRIETA ) VALUES ( 
+'P05530', 'Le date del periodo devono essere riferite allo stesso mese/anno', NULL
+, NULL, NULL); 
+

@@ -1,0 +1,4 @@
+FILE=Gp4ECGM_ins.sql
+SET TERMOUT OFF
+TABLE=a_menu where ruolo='PEC' and applicazione='GP4'
+WHENEVER SQLERROR CONTINUE

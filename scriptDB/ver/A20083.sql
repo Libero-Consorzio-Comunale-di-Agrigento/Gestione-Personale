@@ -1,0 +1,12 @@
+INSERT INTO A_ERRORI ( ERRORE, DESCRIZIONE, DESCRIZIONE_AL1, DESCRIZIONE_AL2,
+PROPRIETA ) VALUES ( 
+'P00573', 'Non è possibile indicare esenzione e imposta e/o scaglione', NULL, NULL
+, NULL); 
+INSERT INTO A_ERRORI ( ERRORE, DESCRIZIONE, DESCRIZIONE_AL1, DESCRIZIONE_AL2,
+PROPRIETA ) VALUES ( 
+'P00574', 'Dati incongruenti: indicare lo scaglione', NULL, NULL, NULL); 
+INSERT INTO A_ERRORI ( ERRORE, DESCRIZIONE, DESCRIZIONE_AL1, DESCRIZIONE_AL2,
+PROPRIETA ) VALUES ( 
+'P00575', 'Impossibile inserire altre registrazioni se l''esenzione è valorizzata'
+, NULL, NULL, NULL); 
+

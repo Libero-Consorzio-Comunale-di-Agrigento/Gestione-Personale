@@ -1,0 +1,5 @@
+INSERT INTO A_ERRORI ( ERRORE, DESCRIZIONE, DESCRIZIONE_AL1, DESCRIZIONE_AL2,
+PROPRIETA ) VALUES ( 
+'P01179', 'Esiste individuo con lo stesso indirizzo email', NULL, NULL, NULL); 
+
+start crp_PECSMORM.sql

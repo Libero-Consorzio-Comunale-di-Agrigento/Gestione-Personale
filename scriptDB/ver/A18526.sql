@@ -1,0 +1,6 @@
+INSERT INTO A_ERRORI ( ERRORE, DESCRIZIONE, DESCRIZIONE_AL1, DESCRIZIONE_AL2,
+PROPRIETA ) VALUES ( 
+'P00234', 'Esiste un altra anagrafica con uguale Numero Albo', NULL, NULL, NULL); 
+
+
+

@@ -1,0 +1,23 @@
+CREATE TABLE KEY_CONSTRAINT
+(
+ OGGETTO                                  VARCHAR2(30)	NOT NULL,
+ TIPO                                     VARCHAR2(2)	NOT NULL,
+ SEQUENZA                                 NUMBER(3)	NOT NULL,
+ NOME                                     VARCHAR2(30)	NOT NULL,
+ NOTE                                     VARCHAR2(240),
+ PROCEDURA                                LONG,
+ LABEL_SUCCESS                            VARCHAR2(30),
+ FLAG_ABORT                               VARCHAR2(1),
+ LABEL_FAILURE                            VARCHAR2(30),
+ RIF_OGGETTO                              VARCHAR2(30),
+ RIF_DESCRIPTOR                           VARCHAR2(240),
+ CASCADE_UPDATE                           VARCHAR2(1),
+ CASCADE_DELETE                           VARCHAR2(1)
+)
+/
+CREATE UNIQUE INDEX KECO_PK on KEY_CONSTRAINT (NOME)
+/
+CREATE UNIQUE INDEX KECO_UK on KEY_CONSTRAINT (OGGETTO,TIPO,SEQUENZA)
+/
+CREATE INDEX KECO_IK on KEY_CONSTRAINT (TIPO,RIF_OGGETTO)
+/

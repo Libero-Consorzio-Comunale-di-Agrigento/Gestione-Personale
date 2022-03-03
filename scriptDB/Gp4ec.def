@@ -1,0 +1,13 @@
+//
+// File .DEF per Base Dati Generale Progetto GP4  Modulo Economico Contabile
+// -------------------------------------------------------------------------
+
+     ,INSTALL,sql,,B,P00chk.sql           ,[usr], Verifica esistenza user di progetto
+     ,INSTALL,sql,,I,Gp4ec_ins.sql        ,     , abilitazione delle voci di menù del modulo
+!GM  ,INSTALL,sql,,I,Gp4ecgm_ins.sql      ,     , abilitazione delle voci del Giuridico per Economico
+     ,INSTALL,sql,,I,Gp4_del_pers_menu.sql,     , Eliminazione voci di menù già disabilitate per il Cliente
+
+     ,REFRESH,sql,,I,Gp4ec_ins.sql        ,     , abilitazione delle voci di menù del modulo
+!GM  ,REFRESH,sql,,I,Gp4ecgm_ins.sql      ,     , abilitazione delle voci del Giuridico per Economico
+     ,REFRESH,sql,,I,Gp4_del_pers_menu.sql,     , Eliminazione voci di menù già disabilitate per il Cliente
+

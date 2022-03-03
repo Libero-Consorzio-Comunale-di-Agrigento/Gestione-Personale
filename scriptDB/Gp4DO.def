@@ -1,0 +1,10 @@
+//
+// File .DEF per Base Dati Generale Progetto GP4  Modulo Giuridico Matricolare
+// -------------------------------------------------------------------------
+
+     ,INSTALL,sql,,B,P00chk.sql                ,[usr], Verifica esistenza user di progetto
+     ,INSTALL,sql,,I,Gp4DO_ins.sql             ,     , abilitazione delle voci di menù del modulo
+     ,INSTALL,sql,,I,gp4do_guide.sql           ,     , eliminazione delle guide inutilizzate dal modulo
+     ,INSTALL,sql,,I,crv_gp4do2.sql            ,     , Creazione delle viste di dotazione organica ( solo specifiche per la DO )
+     ,INSTALL,sql,,I,crp_GP4DO_START.sql       ,     , Creazione del package di inizializzazione
+     ,INSTALL,sql,,I,crf_crea_organigramma.sql ,     , Creazione function

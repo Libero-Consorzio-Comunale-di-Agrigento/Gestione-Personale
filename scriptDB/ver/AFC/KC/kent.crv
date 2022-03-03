@@ -1,0 +1,9 @@
+REM ============================================================
+REM      CREA VIEW KEY_NTEXT
+REM ============================================================
+CREATE OR REPLACE VIEW KEY_NTEXT (TABELLA, COLONNA, PK, TESTO)
+AS
+SELECT TABELLA, COLONNA, PK, TESTO
+  FROM KEY_DICTIONARY
+ where LINGUA = 'I'
+;

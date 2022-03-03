@@ -1,0 +1,12 @@
+REM ============================================================
+REM   CREA table KEY_NWORD 
+REM ============================================================
+create view KEY_NWORD (TESTO, TRADUZIONE)
+as
+select TESTO, TRADUZIONE
+  from KEY_WORD 
+ where LINGUA = 'I'
+
+/
+comment on table KEY_NWORD is 'KEWO - Vista dei testi tradotti'
+/

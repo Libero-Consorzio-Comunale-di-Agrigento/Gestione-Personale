@@ -1,0 +1,26 @@
+CREATE TABLE DENUNCIA_ONAOSI
+(
+  ANNO               NUMBER(4)                  NOT NULL,
+  PERIODO            NUMBER(4)                  NOT NULL,
+  GESTIONE           VARCHAR2(8)                NOT NULL,
+  CI                 NUMBER(8)                  NOT NULL,
+  TRATTENUTA_PREC    NUMBER(12,2),
+  MESE1              NUMBER(12,2),
+  MESE2              NUMBER(12,2),
+  MESE3              NUMBER(12,2),
+  MESE4              NUMBER(12,2),
+  MESE5              NUMBER(12,2),
+  MESE6              NUMBER(12,2),
+  CREDITO_PREC       NUMBER(12,2),
+  TOTALE_DOVUTO      NUMBER(12,2),
+  TOTALE_TRATTENUTO  NUMBER(12,2),
+  DEBITO_CREDITO     NUMBER(12,2),
+  UTENTE             VARCHAR2(8),
+  TIPO_AGG           VARCHAR2(1),
+  DATA_AGG           DATE
+);
+
+CREATE UNIQUE INDEX DEON_PK ON DENUNCIA_ONAOSI
+(ANNO, PERIODO, CI);
+CREATE INDEX DEON_GEST_FK  ON DENUNCIA_ONAOSI 
+(GESTIONE);

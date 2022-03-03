@@ -1,0 +1,4 @@
+FILE=Gp4pi_ins.sql
+SET TERMOUT OFF
+TABLE=a_menu where voce_menu in (select voce_menu from a_voci_menu where voce_menu like 'PGP%' union select distinct voce_menu from a_guide_o where guida_o in (select distinct guida_o from a_voci_menu where voce_menu like 'PGP%') and voce_menu not like 'PGP%' union select distinct voce_menu from a_guide_v where guida_v in (select distinct guida_v from a_guide_o where guida_o in (select distinct guida_o from a_voci_menu where voce_menu like 'PGP%' )) and voce_menu not like 'PGP%') and ruolo = 'AMM' and applicazione = 'GP4'
+WHENEVER SQLERROR CONTINUE

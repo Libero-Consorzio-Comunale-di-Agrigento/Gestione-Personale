@@ -1,0 +1,11 @@
+REM ============================================================
+REM   CREA table KEY_WORD 
+REM ============================================================
+create table KEY_WORD ( TESTO VARCHAR2(240) not null
+                      , LINGUA VARCHAR2(1) NOT NULL
+                      , TRADUZIONE VARCHAR2(2000)
+                      , constraint KEWO_PK primary key (TESTO,LINGUA)
+                      )
+/
+comment on table KEY_WORD is 'KEWO - Tabella dei testi tradotti'
+/

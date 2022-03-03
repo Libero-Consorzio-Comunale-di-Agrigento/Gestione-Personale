@@ -1,0 +1,22 @@
+//
+// File .DEF per "Registrazione" Utente Generico con creazione TableSpace
+// ----------------------------------------------------------------------
+
+// Argomenti del File .INF:
+// 1 = Nome Default TableSpace
+// 2 = File Default TableSpace
+// 3 = Dim. Default TableSpace
+// 4 = Nome Temporary TableSpace
+
+
+//,ALLTIME,exe,O,notepad.exe,readme.txt,,Apertura File ReadMe
+
+// Se $2 <> RG  (non creare TableSpace in fase RG standard)
+// Crea Table Space di Progetto
+$2#RG,INSTALL,sql,O,B,[ad4]CreTs.sql|[ad4]Si4CreTs.sql,$1 $2 $3, Creazione Default TABLESPACE       , system, manager
+
+,INSTALL,sql, ,A,[ad4]Si4CreUs.sql,[usr] [psw] [progetto] $1 $4, Creazione DataBase USER di Progetto, system, manager 
+,INSTALL,sql, ,A,[ad4]Si4CreUs.sql,[usr]Q Q    [progetto] $1 $4, Creazione DataBase USER di Query   , system, manager 
+
+,INSTALL,sql, ,I,[ad4]Ad4DB_g.sql,[usr],Creazione GRANT su Amministratore Base Dati,[usr_ad4],[psw_ad4] 
+,INSTALL,sql, ,I,[ad4]Ad4CM_g.sql,[usr],Creazione GRANT su Archivio Comuni,[usr_ad4],[psw_ad4] 

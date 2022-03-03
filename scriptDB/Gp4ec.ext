@@ -1,0 +1,5 @@
+FILE=Gp4ec_ins.sql
+SET TERMOUT OFF 
+TABLE=a_menu where voce_menu in (select voce_menu from a_voci_menu where voce_menu like 'PEC%' union select distinct voce_menu from a_guide_o where guida_o in (select distinct guida_o from a_voci_menu where voce_menu like 'PEC%') and voce_menu not like 'PEC%' union select distinct voce_menu from a_guide_v where guida_v in (select distinct guida_v from a_guide_o where guida_o in (select distinct guida_o from a_voci_menu where voce_menu like 'PEC%' )) and voce_menu not like 'PEC%') and ruolo = 'AMM' and applicazione = 'GP4'
+TABLE=a_menu where applicazione='GP4' and ruolo='AMM' and voce_menu like 'PX%'
+WHENEVER SQLERROR CONTINUE

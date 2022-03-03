@@ -1,0 +1,239 @@
+//
+// File .DEF per Base Dati Generale Progetto GP4
+// ---------------------------------------------
+
+// Attivato con "I" (Ignore) ma attivato in Abort internamente allo script in caso di errore 
+GP4    ,INSTALL,sql, ,I,Gp4_a00_ins.sql     ,     , Inserimento voci menù e messaggi errore                   , $4
+
+       ,INSTALL,sql, ,I,AD4GraUt.sql        ,[usr] , Grant sulla v_$session,$4
+GP4    ,INSTALL,sql, ,C,Gp4_A00_g.sql       ,[usr] , Diritti su oggetti di Ambiente di Sistema                 , $4
+GP4    ,INSTALL,sql, ,I,Gp4_P00_s_drop.sql  ,$4    , Eliminazione preventiva degli oggetti COMUNI e GRUPPI_LINGUISTICI
+GP4    ,INSTALL,sql, ,I,Gp4_P00_s.sql       ,$4    , Sinonimi su oggetti di Ambiente di Sistema
+       ,INSTALL,sql, ,I,Gp4_isam.sql        ,[usr] $3 [ente], Inserimento istanza di ambiente
+       ,INSTALL,sql, ,I,Gp4_ins_v4_menu.sql ,      , Inizializzazione Applicazione GP4 in Gestione Menù
+       ,INSTALL,sql, ,I,Gp4_ente.sql        ,$2 $3 [ente], Aggiornamento Codice Ente
+
+       ,INSTALL,sql, ,C,Gp4DB_p.sql         ,      , Creazione Oggetti di DataBase di utilità generale         , [usr]Q, Q
+GP4    ,INSTALL,sql, ,C,Gp4_c.sql           ,$1    , Creazione Oggetti di DataBase del progetto - Table
+       ,INSTALL,sql, ,C,crp_Integrity.sql   ,      , Creazione dell'IntegrityPackage
+GP4    ,INSTALL,sql, ,I,Gp4_crf.sql         ,$1    , Creazione Oggetti di DataBase del progetto - Function
+GP4    ,INSTALL,sql, ,C,crp_comp.sql        ,      , Creazione package Competenza 
+GP4    ,INSTALL,sql, ,I,Gp4_v.sql           ,$1    , Creazione Oggetti di DataBase del progetto - View
+
+P00    ,INSTALL,sql, ,I,crt_Gp4_pers.sql    ,      , Creazione tabella Personalizzazioni
+GP4|P00,INSTALL,sql, ,I,Gp4_ins_pers.sql    ,      , Inserimento delle Voci di Menù di personalizzazione
+GP4|P00,INSTALL,sql, ,C,Gp4_pers_menu.sql   ,[ente], Eliminazione delle Voci di Menù non abilitate al Cliente
+       ,INSTALL,sql, ,C,Gp4_ref_codes_i.sql ,      , Inserimento su tabelle di Ref_Codes
+GP4    ,INSTALL,sql, ,C,Gp4_a00q_crg.sql    ,[usr]Q, Creazione diritti su oggetti di a00 per ambiente di query, $4
+GP4    ,INSTALL,sql, ,C,Gp4_crg.sql         ,[usr]Q, Creazione diritti su oggetti di progetto per ambiente di query
+GP4    ,INSTALL,sql, ,I,Gp4_crs.sql         ,[usr] $4 , Creazione sinonimi su oggetti per ambiente di query      , [usr]Q, Q
+
+// Inserimento nuove Tabelle di Giuridico Matricolare per Dotazione Organica
+       ,INSTALL,sql, ,C,Gp4_t_gm.sql        ,$1    , Creazione tabelle nuove del GM
+       ,INSTALL,sql, ,I,crp_gp4_unor.sql    ,      , Creazione package GP4_UNOR 
+       ,INSTALL,sql, ,I,crp_gp4_stam.sql    ,      , Creazione package GP4_STAM 
+       ,INSTALL,sql, ,I,crv_gp4gm_1.sql,      , Creazione viste nuove del GM (parte 1 - necessarie per i packages)
+       ,INSTALL,sql, ,I,crp_gp4gm.sql  ,      , Creazione package di database nuovi del GM 
+       ,INSTALL,sql, ,I,crv_gp4gm_2.sql,      , Creazione viste nuove del GM (parte 2 - necessitano dei packages)
+       ,INSTALL,sql, ,C,Gp4_t_do.sql        ,$1    , Creazione tabelle della DO
+       ,INSTALL,sql, ,I,crp_gp4do.sql       ,      , Creazione package del modulo Dotazione Organica
+       ,INSTALL,sql, ,I,crp_gp4Table.sql    ,      , Creazione dei packages contenenti le funzioni sulle table
+GP4    ,INSTALL,sql, ,I,Gp4_v1.sql          ,$1    , Creazione Viste di DataBase che necessitano di package
+       ,INSTALL,sql, ,I,crv_gp4do1.sql      ,      , Creazione viste della DO ( necessarie per la validazione degli oggetti )
+       ,INSTALL,sql, ,I,crp_gp4ec.sql      ,      , Creazione packages del modulo Economico COntabile
+       ,INSTALL,sql, ,I,crf_autoliquidazione.sql ,      , Creazione triggers sulle tabelle dell'autoliquidazione 
+
+// Fasi attivate in Install per creazione oggetti di copia vortale
+        ,INSTALL,sql, ,I,\ins\get_username_gp4web.sql, , determino user oracle vortale
+        ,INSTALL,sql, ,I,\ins\crg_copy_gp4web.sql,[usr],grant procedure di copia vortale, [P1],[P1]
+        ,INSTALL,sql, ,I,\ins\crs_copy_gp4web.sql,[P1], sinonimo procedure di copia vortale
+
+// Creazione package standard
+       ,INSTALL,sql, ,I,crp_gp4am.sql       ,      , Creazione package funzioni standard sul modulo AM
+       ,INSTALL,sql, ,C,Gp4_crp_std.sql     ,      , Creazione Packages funzioni standard
+       ,INSTALL,sql, ,I,Gp4_crp_std_2.sql   ,      , Creazione Packages funzioni standard con richiami reciproci lanaciato in modalità I
+       ,INSTALL,sql, ,C,Gp4_t.sql           ,      , Creazione di Trigger Procedure e Function
+       ,INSTALL,sql,O,I,Gp4_crp_pers.sql    ,      , Creazione Packages funzioni personalizzate          
+       ,INSTALL,sql,O,I,Gp4_diff_idx.sql    ,      , Creazione Struttura Controllo indici Default
+       ,INSTALL,sql,O,I,Gp4_ins_idx.sql     ,      , Inserimento indici Default          
+
+//
+// Inserimento nuove Tabelle modulo Missioni e Trasferte
+       ,INSTALL,sql, ,C,Gp4_t_mt.sql         ,$1    , Creazione tabelle nuove MT
+       ,INSTALL,sql, ,I,crf_gp4mt.sql        ,      , Creazione package Integrita' Referenziale
+       ,INSTALL,sql, ,I,crp_gp4mt.sql        ,      , Creazione package MT
+
+//
+// Inserimento nuove Tabelle modulo Emissione Badge
+       ,INSTALL,sql,,I,crt_Gp4eb.sql         ,     , creazione table e sequences del modulo
+       ,INSTALL,sql,,I,crf_gp4eb.sql         ,     , creazione metodi del modulo
+       ,INSTALL,sql,,I,crp_GP4EB.sql         ,     , creazione package del modulo
+       ,INSTALL,sql,,I,crp_GP4_BADGE.sql     ,     , creazione package del modulo
+
+//
+// Installazione Oggetti per Integrazione con Ambienti Esterni
+       ,INSTALL,sql, ,I,GP4_crt_IE.sql       ,      , creazione delle tabelle del modulo
+       ,INSTALL,sql, ,I,GP4_crf_IE.sql       ,      , creazione delle function del modulo
+
+// Valorizzazione dati di default su tabella di A00
+       ,INSTALL,sql, ,I,\ins\ver\A00_ins_err.sql ,[usr] , inserimento in una tabella di A00 ,a00,a00
+
+// Sistemazione oggetto del componente KC
+       ,INSTALL,sql, ,I,\Ins\Gp4KC_c.sql ,     , Drop Table e creazione KEY_ERROR come view di DB User A00
+
+// Upgrade 4.8 Installazione Oggetti per Missioni e Trasferte
+        ,V4.8  ,sql, ,I,\ins\Gp4_dim_crt_mt.sql,      , Creazione tabelle nuove MT previo dimensionamento opportuno
+        ,V4.8  ,sql, ,I,\ins\crf_gp4mt.sql     ,      , Creazione package Integrita' Referenziale
+        ,V4.8  ,sql, ,I,\ins\crp_gp4mt.sql     ,      , Creazione package MT
+        ,V4.8  ,sql, ,I,\ins\crq_dist.sql      ,      , Creazione sequence DIST_SQ
+        ,V4.8  ,sql, ,I,\ins\crq_redi.sql      ,      , Creazione sequence REDI_SQ
+        ,V4.8  ,sql, ,I,\ins\crq_riri.sql      ,      , Creazione sequence RIRI_SQ
+        ,V4.8  ,sql, ,I,\ins\crq_rirr.sql      ,      , Creazione sequence RIRR_SQ
+        ,V4.8  ,sql, ,I,\ins\crq_gp4mt_deve.sql,      , Creazione sequence GP4MT_DEVE_ID
+        ,V4.8  ,sql, ,I,\ins\gp4mt_ins_pami.sql,      , Inserimento record tabella Parametri_missioni
+        ,V4.8  ,sql, ,I,gp4mt_ins_errori.sql   ,      , Nuovi codici di errore per Missioni e Trasferte 
+        ,V4.8  ,sql, ,I,gp4mt_ref_codes_i.sql  ,      , Nuovi Ref. Codes per Missioni e Trasferte 
+        ,V4.8  ,sql, ,I,gp4mt_ins_menu.sql     ,      , Aggiornamento oggetti del menu'
+
+// Upgrade 4.8 Installazione Oggetti per Integrazione con Ambienti Esterni
+        ,V4.8  ,sql, ,I,\ins\GP4_crt_IE.sql    ,      , creazione delle tabelle del modulo
+        ,V4.8  ,sql, ,I,\ins\GP4_crf_IE.sql    ,      , creazione delle function del modulo
+        ,V4.8  ,sql, ,I,Gp4IE_menu.sql         ,      , creazione delle voci di menù del modulo
+
+// Dare le grant di creazione degli snapsot prima dell'esecuzione dell'attività 2789 
+// che viene eseguita nel file dell'upgrade Gp4_V48.sql ( per gli oggetti dell'autoliquidazione )
+        ,V4.8,sql, ,I,A2789GraUS.sql,[usr],GRANT specifici a user di Base Dati,system,manager
+
+// Aggiornamento a_apppoggio_stampe per la WEB
+        ,V4.8,sql, ,I,A00_apst.sql,[usr],modifica alla tabella di A00 ,a00,a00
+
+// upgrade 4.8
+        ,V4.8  ,sql, ,I,Gp4_V48.sql            ,      , Modifiche DB per difetti generici
+
+// upgrade 4.8.1
+        ,V4.8.1,sql, ,I,Gp4_V481.sql           ,      , Modifiche DB per difetti generici
+
+// upgrade 4.8.2
+        ,V4.8.2,sql, ,I,Gp4_V482.sql           ,      , Modifiche DB per difetti generici - Finanziaria 2005
+
+// upgrade 4.8.3
+        ,V4.8.3,sql, ,I,Gp4_V483.sql           ,      , Modifiche DB per difetti generici - Modello CUD 2005
+
+// upgrade 4.8.4
+        ,V4.8.4,sql, ,I,Gp4_V484.sql           ,      , Modifiche DB per difetti generici
+
+// upgrade 4.8.5
+        ,V4.8.5,sql, ,I,Gp4_V485.sql           ,      , Modifiche DB per difetti generici - Denunce INPS e DMA
+
+// upgrade 4.8.6
+        ,V4.8.6,sql, ,I,Gp4_V486.sql           ,      , Modifiche DB per difetti generici - Denunce INPS e DMA
+
+// upgrade 4.8.7
+        ,V4.8.7,sql, ,I,Gp4_V487.sql           ,      , Modifiche DB per difetti generici
+
+// upgrade 4.8.8
+        ,V4.8.8,sql, ,I,Gp4_V488.sql           ,      , Modifiche DB per difetti generici
+
+// upgrade 4.8.9
+        ,V4.8.9,sql, ,I,Gp4_V489.sql           ,      , Modifiche DB per difetti generici - Modello 770 2005
+
+// upgrade 4.8.10
+        ,V4.8.10,sql, ,I,Gp4_V4810.sql         ,      , Modifiche DB per difetti generici
+
+// upgrade 4.8.11
+        ,V4.8.11,sql, ,I,Gp4_V4811.sql         ,      , Modifiche DB per difetti generici
+
+// upgrade 4.8.12
+        ,V4.8.12,sql, ,I,Gp4_V4812.sql         ,      , Modifiche DB per difetti generici - Calcolo Onaosi 2005
+
+// upgrade 4.8.12
+        ,V4.8.13,sql, ,I,Gp4_V4813.sql         ,      , Modifiche DB per difetti generici - Inizio anno 2006
+
+// Aggiornamento a_segnalazioni_errore per ampliamento campo
+        ,V4.8.13,sql, ,I,A00_seer.sql,[usr], modifica alla tabella di A00 ,a00,a00
+
+// Aggiornamento in a_errori_applicazione di una nuova segnalazione
+        ,V4.8.13,sql, ,I,A00_ins_err.sql,[usr], inserimento in una tabella di A00 ,a00,a00
+
+// upgrade 4.8.14
+        ,V4.8.14,sql, ,I,Gp4_V4814.sql         ,      , Modifiche DB per difetti generici - Modello CUD 2006
+
+// upgrade 4.8.15
+        ,V4.8.15,sql, ,I,Gp4_V4815.sql         ,      , Modifiche DB per difetti generici
+
+// upgrade 4.8.16
+        ,V4.8.16,sql, ,I,Gp4_V4816.sql         ,      , Modifiche DB per difetti generici - Conto Annuale 2006 e Modello 730
+
+// upgrade 4.8.17
+        ,V4.8.17,sql, ,I,Gp4_V4817.sql         ,      , Modifiche DB per difetti generici - Modello 770 2006
+
+// upgrade 4.8.18
+        ,V4.8.18,sql, ,I,Gp4_V4818.sql         ,      , Modifiche DB per difetti generici
+        ,V4.8.18,sql, ,I,\ins\Gp4_alter_gest.sql,     , Modifica campo gestione su varie tabelle
+
+// upgrade 4.8.19
+        ,V4.8.19,sql, ,I,Gp4_V4819.sql         ,      , Modifiche DB per difetti generici
+
+// upgrade 4.8.20
+        ,V4.8.20,sql, ,I,Gp4_V4820.sql         ,      , Modifiche DB per difetti generici - Finanziaria 2007
+
+// upgrade 4.8.21
+        ,V4.8.21,sql, ,I,Gp4_V4821.sql         ,      , Modifiche DB per difetti generici - Finanziaria 2007 e Bozza CUD 2007
+
+// upgrade 4.8.22
+        ,V4.8.22,sql, ,I,Gp4_V4822.sql         ,      , Modifiche DB per difetti generici - CUD 2007
+
+// upgrade 4.8.23
+        ,V4.8.23,sql, ,I,Gp4_V4823.sql         ,      , Modifiche DB per difetti generici - Finanziaria 2007
+
+// Aggiornamento a_segnalazioni_errore per ampliamento campo
+        ,V4.8.23,sql, ,I,A00_seer.sql,[usr], modifica alla tabella di A00 ,a00,a00
+
+// upgrade 4.8.24
+        ,V4.8.24,sql, ,I,Gp4_V4824.sql         ,      , Modifiche DB per difetti generici - Conto Annuale e 730/2007
+
+// upgrade 4.8.25
+        ,V4.8.25,sql, ,I,Gp4_V4825.sql         ,      , Modifiche DB per difetti generici - Bozza Modello 770 2006
+
+// upgrade 4.8.26
+        ,V4.8.26,sql, ,I,Gp4_V4826.sql         ,      , Modifiche DB per difetti generici - Calcolo per cassa competenza - Quadro Z2 DMA
+
+// upgrade 4.8.27
+        ,V4.8.27,sql, ,I,Gp4_V4827.sql         ,      , Modifiche DB per difetti generici
+
+// upgrade 4.9
+        ,V4.9,sql, ,I,A13152_10_g.sql          ,[usr] , Diritti su a_prenotazioni_log di Ambiente di Sistema    , $4
+        ,V4.9,sql, ,I,A13152_10_s.sql          ,$4    , Sinonimo a_prenotazioni_log da Ambiente di Sistema
+        ,V4.9,sql, ,I,A00_ins_err.sql          ,[usr] , inserimento in una tabella di A00 ,a00,a00
+        ,V4.9,sql, ,I,\Ins\Gp4KC_c.sql         ,      , Drop Table e creazione KEY_ERROR come view di DB User A00 in Upgrade
+        ,V4.9,sql, ,I,Gp4_V49.sql              ,      , Modifiche DB per difetti generici
+        ,V4.9,sql, ,I,\ins\gp4eb_ins_menu.sql  ,      , Installazione voci non abilitate modulo EB per DB già installati
+        ,V4.9,sql, ,I,\ins\gp4eb_ref_codes_i.sql  ,   , Installazione ref codes modulo EB per DB già installati
+        ,V4.9,sql, ,I,\ins\gp4cw_ins_menu.sql  ,      , Installazione voci non abilitate modulo CW per DB già installati
+        ,V4.9,sql, ,I,\ins\gp4cw_ref_codes_i.sql  ,   , Installazione ref codes modulo CW per DB già installati
+        ,V4.9,sql, ,I,\ins\gp4ir_ins_menu.sql  ,      , Installazione voci non abilitate modulo IR per DB già installati
+
+// Fasi attivate in ogni Upgrade per creazione oggetti di copia vortale
+        ,UPGRADE,sql, ,I,\ins\get_username_gp4web.sql, , determino user oracle vortale
+        ,UPGRADE,sql, ,I,\ins\crg_copy_gp4web.sql,[usr],grant procedure di copia vortale, [P1],[P1]
+        ,UPGRADE,sql, ,I,\ins\crs_copy_gp4web.sql,[P1], sinonimo procedure di copia vortale
+
+// Fasi attivate in ogni Upgrade alcune anche in install
+       ,UPGRADE,sql, ,I,Gp4_ins_pers.sql        ,      , Reinserimento della tabella delle Funzioni personalizzate
+       ,ALLTIME,sql,M,I,PropPe_g.sql            ,[usr] 8 , Grant di Java property Permission
+
+// Fase attivata in Refresh per l'eventuale riabilitazione delle voci di menu e dei package personalizzati
+       ,REFRESH,sql, ,I,Gp4_ins_v4_menu.sql     ,      , Reinserimento Applicazione GP4 in Gestione Menù
+       ,REFRESH,sql, ,I,Gp4_ins_pers.sql        ,      , Reinserimento della tabella delle Funzioni personalizzate
+       ,REFRESH,sql, ,C,\ins\Gp4_pers_menu.sql  ,[ente], Eliminazione delle Voci di Menù non abilitate al Cliente
+       ,REFRESH,sql,O,I,Gp4_ins_menu_pers.sql   ,      , Inserimento delle Voci di Menù personalizzate del Cliente, $4
+       ,REFRESH,sql,O,I,Gp4_crp_pers.sql        ,      , Creazione Packages funzioni personalizzate   
+       ,REFRESH,sql, ,I,Gp4_crg.sql         ,[usr]Q, Creazione diritti su oggetti di progetto per ambiente di query
+       ,REFRESH,sql, ,I,Gp4_crs.sql         ,[usr] $4 , Creazione sinonimi su oggetti per ambiente di query      , [usr]Q, Q
+
+//
+// Ricompilazione di Oggetti sul DataBase
+       ,INSTALL,sql, ,I,comp_all.sql            ,      , Ricompilazione cautelativa dei Packages sulla Base dati
+       ,INSTALL,sql, ,I,comp_all_log.sql        ,      , LOG Esecuzione Procedure di validazione oggetti DB
+       ,REFRESH,sql, ,I,comp_all.sql            ,      , Ricompilazione cautelativa dei Packages sulla Base dati
+       ,REFRESH,sql, ,I,comp_all_log.sql        ,      , LOG Esecuzione Procedure di validazione oggetti DB

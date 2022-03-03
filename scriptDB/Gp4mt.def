@@ -1,0 +1,6 @@
+//
+// File .DEF per Base Dati Generale Progetto GP4  Modulo Missioni e Trasferte
+// --------------------------------------------------------------------------
+
+     ,INSTALL,sql,,B,P00chk.sql       ,[usr], Verifica esistenza user di progetto
+     ,INSTALL,sql,,I,Gp4mt_ins.sql    ,     , Abilitazione delle voci di menù

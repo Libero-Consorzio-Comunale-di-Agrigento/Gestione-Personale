@@ -1,0 +1,27 @@
+FILE=Gp4_ins_san_3.sql
+SET TERMOUT OFF
+TABLE=aggiuntivi_familiari  
+TABLE=AGENTI_INFORTUNIO
+TABLE=assicurazioni_inail
+TABLE=astensioni
+TABLE=attivita
+TABLE=ATTIVITA_INFORTUNIO
+TABLE=automatismi_presenza
+TABLE=basi_voce
+TABLE=calendari
+TABLE=carriere
+TABLE=CATEGORIA_STATI_ESTERI
+TABLE=CATEGORIE_ATTRIBUTI
+TABLE=categorie_evento
+TABLE=CATEGORIE_MINISTERIALI
+TABLE=categorie_protette
+TABLE=caselle_fiscali
+TABLE=causali_evento
+TABLE=CAUSE_INFORTUNIO
+TABLE=centri_costo
+TABLE=certificati
+TABLE=classi_budget
+TABLE=classi_delibera
+TABLE=classi_evento
+TABLE=classi_rapporto
+WHENEVER SQLERROR CONTINUE

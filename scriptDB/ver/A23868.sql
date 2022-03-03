@@ -1,0 +1,1 @@
+update a_voci_menu set modulo = '' where voce_menu = 'PGMLSDAM';

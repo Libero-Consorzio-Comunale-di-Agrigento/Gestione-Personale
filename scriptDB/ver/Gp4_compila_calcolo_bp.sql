@@ -1,0 +1,24 @@
+alter procedure fpeccperp compile;
+alter package peccperp compile;
+alter package peccperp2 compile;
+alter package peccperp3 compile;
+alter package gp4_inex compile;
+alter procedure fpeccmocp compile;
+alter package peccmocp compile;
+alter package peccmocp_autofam compile;
+alter package peccmocp_ritenuta compile;
+alter package peccmocp_tariffa compile;
+alter package peccmocp1 compile;
+alter package peccmocp10 compile;
+alter package peccmocp11 compile;
+alter package peccmocp12 compile;
+alter package peccmocp2 compile;
+alter package peccmocp3 compile;
+alter package peccmocp4 compile;
+alter package peccmocp5 compile;
+alter package peccmocp6 compile;
+alter package peccmocp7 compile;
+alter package peccmocp8 compile;
+alter package peccmocp9 compile;
+
+exec utilitypackage.compile_all;

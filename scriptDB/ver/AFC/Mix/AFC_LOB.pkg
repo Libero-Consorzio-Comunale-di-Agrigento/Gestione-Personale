@@ -1,0 +1,606 @@
+CREATE OR REPLACE package AFC_LOB is
+/******************************************************************************
+ NOME:        AFC_LOB.
+ DESCRIZIONE: Funzioni per la gestione degli oggetti di tipo LOB.
+
+ ANNOTAZIONI: .
+
+ REVISIONI:
+ Rev. Data       Autore Descrizione
+ ---- ---------- ------ ------------------------------------------------------
+ 00   30/08/2006 FT     Prima emissione.
+ 01   28/08/2007 FT     Aggiunte 2 versioni di to_blob (per varchar2 e clob),
+                        decode_value, versione di to_clob per blob e sql_execute.
+ 02   11/09/2007 MM     Aggiunta replace_clob.
+ 03   31/10/2007 FT     Aggiunto nvl_clob
+******************************************************************************/
+   s_revisione constant AFC.t_revision := 'V1.03';
+ 
+   function versione return VARCHAR2;
+
+   -- Trasforma stringa in CLOB
+   function to_clob
+   ( p_testo in varchar2
+   , p_empty_clob in boolean  default FALSE
+   ) return clob;
+
+   function to_clob
+   ( p_testo in blob
+   , p_empty_clob in boolean  default FALSE
+   ) return clob;
+
+   function to_blob
+   ( p_testo in varchar2
+   , p_empty_blob in boolean  default FALSE
+   ) return blob;
+
+   function to_blob
+   ( p_testo in clob
+   , p_empty_blob in boolean  default FALSE
+   ) return blob;
+
+   function decode_value
+   ( p_check_value in clob
+   , p_against_value in clob
+   , p_then_result in clob
+   , p_else_result in clob
+   ) return clob;
+
+   -- Esecuzione istruzione dinamica contenuta nel clob
+   procedure sql_execute
+   ( p_testo in clob
+   );
+   
+   -- Sostituzione di tutte le occorrenze di una stringa nel clob
+   function replace_clob
+   ( p_srcClob IN CLOB
+   , p_replaceStr IN VARCHAR2
+   , p_replaceWith IN VARCHAR2) 
+   RETURN CLOB;   
+
+   function nvl_clob
+   ( p_check_value in clob
+   , p_then_result in clob
+   ) return clob;
+
+end AFC_LOB;
+/
+CREATE OR REPLACE package body AFC_LOB is
+/******************************************************************************
+ NOME:        AFC_LOB.
+ DESCRIZIONE: Funzioni per la gestione degli oggetti di tipo LOB.
+
+ ANNOTAZIONI: .
+ REVISIONI:
+ Rev. Data       Autore Descrizione
+ ---- ---------- ------ ------------------------------------------------------
+ 000 30/08/2006  FT     Prima emissione.
+ 001 29/08/2007  FT     Aggiunte 2 versioni di to_blob (per varchar2 e clob),
+                        decode_value, versione di to_clob per blob e sql_execute
+                        (con metodi ausiliari)
+ 002 11/09/2007  MM     Aggiunta replace_clob.
+ 003 31/10/2007  FT     Aggiunto nvl_clob
+******************************************************************************/
+   s_revisione_body constant AFC.t_revision := '003';
+
+   function versione return VARCHAR2 is
+   /******************************************************************************
+    NOME:        versione.
+    DESCRIZIONE: Restituisce versione e revisione di distribuzione del package.
+   
+    RITORNA:     VARCHAR2 stringa contenente versione e revisione.
+    NOTE:        Primo numero  : versione compatibilità del Package.
+                 Secondo numero: revisione del Package specification.
+                 Terzo numero  : revisione del Package body.
+   ******************************************************************************/
+   begin
+      return AFC.version( s_revisione, nvl(s_revisione_body,'000') );
+   end versione;
+
+--------------------------------------------------------------------------------
+
+   function to_clob
+   ( p_testo in varchar2
+   , p_empty_clob in boolean  default FALSE
+   ) return clob is
+   /******************************************************************************
+    NOME:        to_clob
+    DESCRIZIONE: Trasforma stringa in CLOB.
+
+    PARAMETRI:   p_testo      varchar2
+                 p_empty_clob boolean: Se FALSE ritorna NULL, se TRUE ritorna CALL empty_clob
+
+    RITORNA:     clob 
+
+    REVISIONI:
+    Rev.  Data        Autore  Descrizione
+    ----  ----------  ------  ------------------------------------------------------
+    013   19/05/2006  --      Aggiunta metodo to_clob
+    014   25/06/2006  MF      Parametro in to_clob per ottenere empty in caso di null.
+   ******************************************************************************/
+      d_result  clob;
+      d_amount  binary_integer;
+   begin
+   
+      d_amount := length( p_testo );
+      if d_amount != 0 then
+         DBMS_LOB.createTemporary( d_result, TRUE );
+         DBMS_LOB.write( d_result, d_amount, 1, p_testo );
+      else
+         if p_empty_clob
+         then
+            d_result := empty_clob;
+            DBMS_LOB.createTemporary( d_result, TRUE, DBMS_LOB.call );
+         else
+            null; -- ritorna d_result che contiene NULL
+         end if;
+      end if;
+      
+      return d_result;
+   
+   end to_clob;
+
+--------------------------------------------------------------------------------
+
+   function to_clob
+   ( p_testo in blob
+   , p_empty_clob in boolean  default FALSE
+   ) return clob is
+   /******************************************************************************
+    NOME:        to_clob
+    DESCRIZIONE: Trasforma blob in CLOB - overloading per valori blob.
+
+    PARAMETRI:   p_testo      blob
+                 p_empty_clob boolean: Se FALSE ritorna NULL, se TRUE ritorna CALL empty_clob
+
+    RITORNA:     clob 
+
+    REVISIONI:
+    Rev.  Data        Autore  Descrizione
+    ----  ----------  ------  ------------------------------------------------------
+    001   29/08/2007  --      Prima versione
+   ******************************************************************************/
+      d_result      clob := empty_clob();
+      d_length      number;
+      block         number := 10000;
+      blockcount    number;
+      rawbuff       raw (32000);
+      pos           number;
+      charbuff      varchar2 (32000);
+      charbuff_size number;
+   begin
+      dbms_lob.createtemporary ( d_result
+                               , TRUE
+                               , dbms_lob.CALL
+                               );
+      -- recast the BLOB to a CLOB
+      d_length := dbms_lob.getlength ( p_testo
+                                     );
+
+      if d_length != 0
+      then
+         if block < d_length
+         then
+            blockcount := round ( ( d_length / block ) + 0.5 );
+         else
+            blockcount := 1;
+         end if;
+
+         pos := 1;
+
+         for i in 1 .. blockcount
+         loop
+            dbms_lob.read ( p_testo
+                          , block
+                          , pos
+                          , rawbuff
+                          );
+            charbuff := utl_raw.cast_to_varchar2 ( rawbuff );
+            charbuff_size := length ( charbuff );
+            dbms_lob.writeappend ( d_result
+                                 , charbuff_size
+                                 , charbuff
+                                 );
+            pos := pos + block;
+         end loop;
+      else
+         d_result := to_clob( ''
+                            , p_empty_clob
+                            );
+      end if;
+
+      return d_result;
+
+   exception when no_data_found then
+      return d_result;
+   end to_clob;
+
+--------------------------------------------------------------------------------
+
+   function to_blob
+   ( p_testo in varchar2
+   , p_empty_blob in boolean  default FALSE
+   ) return blob is
+   /******************************************************************************
+    NOME:        to_blob
+    DESCRIZIONE: Trasforma stringa in BLOB.
+    
+    PARAMETRI:   p_testo      varchar2
+                 p_empty_blob boolean: Se FALSE ritorna NULL, se TRUE ritorna CALL empty_blob
+                 
+    RITORNA:     varchar2 
+   
+    REVISIONI:
+    Rev.  Data        Autore  Descrizione
+    ----  ----------  ------  ------------------------------------------------------
+    001   29/08/2007  --      Prima versione
+   ******************************************************************************/
+      d_result  blob;
+      d_amount  binary_integer;
+   begin
+
+      d_amount := length( p_testo );
+      if d_amount != 0 then
+         DBMS_LOB.createTemporary( d_result, TRUE );
+         DBMS_LOB.write( d_result, d_amount, 1, utl_raw.CAST_TO_RAW( p_testo ) );
+      else
+         if p_empty_blob
+         then
+            d_result := empty_blob;
+            DBMS_LOB.createTemporary( d_result, TRUE, DBMS_LOB.call );
+         else
+            null; -- ritorna d_result che contiene NULL
+         end if;
+      end if;
+
+      return d_result;
+
+   end to_blob;
+
+--------------------------------------------------------------------------------
+
+   function to_blob
+   ( p_testo in clob
+   , p_empty_blob in boolean  default FALSE
+   ) return blob is
+   /******************************************************************************
+    NOME:        to_blob
+    DESCRIZIONE: Trasforma clob in BLOB - overloading per type clob
+
+    PARAMETRI:   p_testo      clob
+                 p_empty_blob boolean: Se FALSE ritorna NULL, se TRUE ritorna CALL empty_blob
+
+    RITORNA:     blob
+
+    REVISIONI:
+    Rev.  Data        Autore  Descrizione
+    ----  ----------  ------  ------------------------------------------------------
+    001   29/08/2007  --      Prima versione
+   ******************************************************************************/
+      d_result  blob := null;
+      d_char    varchar2(32767);
+      d_length  binary_integer;
+      d_dep     integer := 0;
+      d_amount  binary_integer := 32767;
+   begin
+
+      dbms_lob.CREATETEMPORARY( d_result
+                              , TRUE
+                              , dbms_lob.session
+                              );
+      d_length := dbms_lob.getLength( p_testo
+                                    );
+      if d_length != 0
+      then
+         loop
+            dbms_lob.read( p_testo
+                         , d_amount
+                         , 1 + (d_amount*d_dep)
+                         , d_char
+                         );
+            d_dep := d_dep+1;
+            d_length := d_length - d_amount;
+            dbms_lob.writeappend( d_result
+                                , d_amount
+                                , utl_raw.CAST_TO_RAW( d_char )
+                                );
+            exit when d_length < 0;
+         end loop;
+      else
+         d_result := to_blob( ''
+                            , p_empty_blob
+                            );
+      end if;
+
+      return d_result;
+
+   exception
+      when no_data_found then
+         return d_result;
+end to_blob;
+
+--------------------------------------------------------------------------------
+
+   function decode_value
+   ( p_check_value in clob
+   , p_against_value in clob
+   , p_then_result in clob
+   , p_else_result in clob
+   ) return clob is
+   /******************************************************************************
+    NOME:        decode_value
+    DESCRIZIONE: Istruzione "decode" per PL/SQL.
+    
+    PARAMETRI:   p_check_value    valore da controllare
+                 p_against_value  valore di confronto
+                 p_then_result    risultato per uguale
+                 p_else_result    risultato per diverso
+                 
+    RITORNA:     varchar2 
+
+    REVISIONI:
+    Rev.  Data        Autore  Descrizione
+    ----  ----------  ------  ------------------------------------------------------
+    001   29/08/2007  FT      Prima versione
+   ******************************************************************************/
+      d_result clob;
+   begin
+
+      if dbms_lob.compare( p_check_value, p_against_value ) = 0
+      or (   p_check_value is null
+         and p_against_value is null
+         )
+      then
+         d_result := p_then_result;
+      else
+         d_result := p_else_result;
+      end if;
+
+      return d_result;
+
+   end decode_value;
+
+--------------------------------------------------------------------------------
+
+   procedure spezza_riga
+   ( p_text_table in out dbms_sql.varchar2s
+   , p_text  in clob
+   )
+   /******************************************************************************
+    NOME:        spezza_riga
+    DESCRIZIONE: Spezza il testo in input in stringhe di lunghezza massima 255 e
+                 riempie la tabella p_text_table partendo dall'ultima riga
+                 presente + 1.
+    ARGOMENTI:   p_text_table IN OUT  dbms_sql.varchar2s tabella da riempire.
+                 p_text       IN      clob               testo da spezzare.
+    ECCEZIONI:   -
+    ANNOTAZIONI: Se la sottostringa di 255 caratteri non termina con uno spazio,
+                 cerca lo spazio precedente e spezza in corrispondenza di esso.
+    REVISIONI:
+    Rev. Data       Autore Descrizione
+    ---- ---------- ------ ------------------------------------------------------
+    001  28/08/2007 MM     Prima emissione.
+   ******************************************************************************/
+   is
+      d_stringa           varchar2(256);
+      d_amount            integer := 255;
+      d_string_len        number := 0;
+      d_text_len          number := 0;
+      d_index             number := nvl(p_text_table.last, 0);
+   begin
+      d_text_len := dbms_lob.getlength(p_text);
+      while d_text_len > d_string_len
+      loop
+         d_stringa := dbms_lob.SUBSTR (p_text, d_amount, 1 + d_string_len);
+         if    substr(trim(d_stringa), 1, 2) = '--'
+         then
+            exit;
+         end if;
+         if    substr(d_stringa, 1, length(d_stringa) - 1) <> ' '
+         and   d_text_len > d_string_len + length(d_stringa)
+         then
+            if instr(d_stringa, ' ', - 1) > 0 then
+               d_stringa := substr(d_stringa, 1, instr(d_stringa, ' ', - 1));
+            end if;
+         end if;
+         d_string_len := d_string_len + length(d_stringa);
+         d_index := d_index + 1;
+         d_stringa := replace(d_stringa, chr(13), ' ');
+         p_text_table(d_index) := d_stringa;
+      end loop;
+   end spezza_riga;
+--------------------------------------------------------------------------------
+   procedure riempi_text_table
+   ( p_text_table in out dbms_sql.varchar2s
+   , p_testo in clob
+   ) is
+   /******************************************************************************
+    NOME:        riempi_text_table
+    DESCRIZIONE: Riempie la table p_text_table con il sorgente passato.
+    ARGOMENTI:   p_text_table IN OUT  dbms_sql.varchar2s tabella da riempire.
+                 p_text       IN      clob               testo con cui riempirla.
+    ECCEZIONI:   -
+    ANNOTAZIONI: Eventuale ';' o '/' finale viene eliminato.
+                 Per riempire p_text_table vengono isolate le singole righe di
+                 sorgente (fino al carattere chr(10)); se la riga cosi' ottenuta ha
+                 lunghezza maggiore di 255 caratteri, viene spezzata in piu' righe
+                 di lunghezza massima 255.
+    REVISIONI:
+    Rev. Data       Autore Descrizione
+    ---- ---------- ------ ------------------------------------------------------
+    001  28/08/2007 MM     Prima emissione.
+   ******************************************************************************/
+      d_text              clob;
+      d_stringa           varchar2(32767);
+      d_max_len           integer := 32767;
+      d_row_len           integer := 255;
+      d_index             number := 0;
+      d_clob_len          number := 0;
+      d_len               number := 0;
+      d_posNL             number := 0;
+      d_posNL_prec        number := 0;
+      d_clob_dep          clob;
+   begin
+      d_text := p_testo;
+      d_clob_len := nvl(dbms_lob.getlength(d_text),0);
+      if d_clob_len > 0 then
+         d_posNL := dbms_lob.instr(d_text, chr(10), d_posNL_prec + 1);
+         if d_posNL > 0 then
+            while d_posNL - d_posNL_prec <> 0
+            loop
+               if d_posNL = 0
+               then
+                  d_len := d_max_len;
+               else
+                  d_len := d_posNL - d_posNL_prec - 1;
+               end if;
+               d_stringa := dbms_lob.SUBSTR (d_text, d_len, d_posNL_prec + 1);
+               if length(d_stringa) > d_row_len
+               then
+                  DBMS_LOB.createTemporary( d_clob_dep, TRUE );
+                  DBMS_LOB.write( d_clob_dep, length(d_stringa), 1, d_stringa );
+                  spezza_riga(p_text_table, d_clob_dep);
+                  d_index := p_text_table.last;
+               else
+                  if d_stringa is not null
+                  then
+                     d_stringa := replace(d_stringa, chr(13), ' ');
+                     d_index := d_index + 1;
+                     p_text_table(d_index) := d_stringa;
+                  end if;
+               end if;
+               d_posNL_prec := d_posNL;
+               if d_posNL > 0
+               then
+                  d_posNL := dbms_lob.instr(d_text, chr(10), d_posNL_prec + 1);
+               end if;
+            end loop;
+         else
+            spezza_riga(p_text_table, d_text);
+         end if;
+      end if;
+   end riempi_text_table;
+--------------------------------------------------------------------------------
+   procedure sql_execute
+   ( p_text_table IN dbms_sql.varchar2s
+   ) is
+   /******************************************************************************
+    NOME:        sql_execute
+    DESCRIZIONE: Esegue il sorgente PL/Sql memorizzato in p_text_table.
+    ARGOMENTI:   p_text_table IN dbms_sql.varchar2s tabella contenente il sorgente
+                                                    da eseguire.
+    REVISIONI:
+    Rev. Data       Autore Descrizione
+    ---- ---------- ------ ------------------------------------------------------
+    001  28/08/2007 MM     Prima emissione.
+   ******************************************************************************/
+      d_cursor              INTEGER;
+      d_ret_val             INTEGER;
+      d_last                varchar2(255);
+      d_text_table          dbms_sql.varchar2s := p_text_table;
+   begin
+      if nvl(d_text_table.last, 0) > 0
+      then
+         d_last := ltrim(d_text_table(d_text_table.last));
+         if (SUBSTR(d_last, length(d_last)) = ';' and lower(nvl(SUBSTR(d_last, length(d_last) - 3), ' ')) <> 'end;')
+         or SUBSTR(d_last, length(d_last)) = '/'
+         then
+            d_text_table(d_text_table.last) := SUBSTR(d_last, 1, length(d_last) - 1);
+         end if;
+      end if;
+      if nvl(d_text_table.first, 0) > 0 then
+         d_cursor := DBMS_SQL.OPEN_CURSOR;
+         DBMS_SQL.PARSE(d_cursor, d_text_table, d_text_table.first, d_text_table.last, TRUE, dbms_sql.native);
+         d_ret_val := DBMS_SQL.EXECUTE(d_cursor);
+         DBMS_SQL.CLOSE_CURSOR(d_cursor);
+      end if;
+   end sql_execute;
+--------------------------------------------------------------------------------
+   procedure sql_execute
+   ( p_testo in clob
+   ) is
+   /******************************************************************************
+    NOME:        sql_execute
+    DESCRIZIONE: Esegue il clob dato.
+    ARGOMENTI:   p_testo IN clob sorgente da eseguire.
+    REVISIONI:
+    Rev. Data       Autore Descrizione
+    ---- ---------- ------ ------------------------------------------------------
+    001  28/08/2007 MM     Prima emissione.
+   ******************************************************************************/
+      d_text_table       dbms_sql.varchar2s;
+   begin
+      riempi_text_table(d_text_table, p_testo);
+      sql_execute(d_text_table);
+   end sql_execute;  
+   
+--------------------------------------------------------------------------------
+
+   function replace_clob
+   ( p_srcClob IN CLOB
+   , p_replaceStr IN VARCHAR2
+   , p_replaceWith IN VARCHAR2) 
+   RETURN CLOB IS
+   /******************************************************************************
+    NOME:        replace_clob
+    DESCRIZIONE: Esegue la sostituzione di tutte le occorrenze di p_replaceStr con
+                 p_replaceWith nel clob dato.
+    PARAMETRI:   p_srcClob      IN CLOB      clob da esaminare
+                 p_replaceStr   IN VARCHAR2  stringa da sostituire
+                 p_replaceWith  IN VARCHAR2  stringa con cui sostituire
+    REVISIONI:
+    Rev. Data       Autore Descrizione
+    ---- ---------- ------ ------------------------------------------------------
+    002  11/09/2007 MM     Prima emissione.
+   ******************************************************************************/
+      d_newClob    CLOB := EMPTY_CLOB;
+      d_text_table dbms_sql.varchar2s;
+   BEGIN
+      dbms_lob.CreateTemporary(d_newClob,TRUE);
+      riempi_text_table(d_text_table, p_srcClob);
+      for i in nvl(d_text_table.first, 0)..nvl(d_text_table.last, 0)
+      loop
+         d_text_table(i) := replace(d_text_table(i), p_replaceStr, p_replaceWith);
+         dbms_lob.writeAppend(d_newClob, LENGTH(d_text_table(i)), d_text_table(i));
+      end loop;
+     RETURN d_newClob;    
+   EXCEPTION
+     WHEN OTHERS THEN
+       RAISE;
+   END replace_clob;
+
+--------------------------------------------------------------------------------
+
+   function nvl_clob
+   ( p_check_value in clob
+   , p_then_result in clob
+   ) return clob
+   /******************************************************************************
+    NOME:        nvl_clob
+    DESCRIZIONE: Esegue la funzione nvl di oracle su valore di tipo CLOB
+
+    PARAMETRI:   p_check_value  IN CLOB      clob da esaminare
+                 p_then_result  IN CLOB      clob da restituire nel caso in cui
+                                             p_check_value sia EMPTY
+
+    REVISIONI:
+    Rev. Data       Autore Descrizione
+    ---- ---------- ------ ------------------------------------------------------
+    002  31/10/2007 FT     Prima emissione.
+   ******************************************************************************/
+   is
+   begin
+
+      if dbms_lob.getlength( lob_loc => p_check_value ) > 0
+      then
+         return p_check_value;
+      else
+         return p_then_result;
+      end if;
+
+   end nvl_clob;
+
+--------------------------------------------------------------------------------
+
+end AFC_LOB;
+/

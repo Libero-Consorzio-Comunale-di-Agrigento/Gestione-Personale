@@ -1,0 +1,22 @@
+create table w_finanziaria05
+( CI                                       NUMBER(8)  NOT NULL
+, COND_FIS                                 VARCHAR2(4)
+, CN                                       NUMBER(2)
+, FG                                       NUMBER(2)
+, FD                                       NUMBER(2)
+, FM                                       NUMBER(2)
+, MD                                       NUMBER(2)
+, AL                                       NUMBER(2)
+, IMP_CN                                   NUMBER(6,2)
+, IMP_FG                                   NUMBER(6,2)
+, IMP_FD                                   NUMBER(6,2)
+, IMP_FM                                   NUMBER(6,2)
+, IMP_MD                                   NUMBER(6,2)
+, IMP_AL                                   NUMBER(6,2)
+, GG                                       number(3)
+, cong                                     number(1)
+, reddito                                  number(12,2)
+, PERcentuale                              NUMBER(5,2)
+, spettante                                number(12,2)
+)
+/

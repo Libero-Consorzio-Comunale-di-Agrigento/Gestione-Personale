@@ -1,0 +1,29 @@
+FILE=Gp4_ins_pal_7.sql
+SET TERMOUT OFF                    
+TABLE=stati_civili
+TABLE=statistiche
+TABLE=struttura_modelli_stampa
+TABLE=SUB_CAUSE_INFORTUNIO
+TABLE=tariffe_voce
+TABLE=testi_formula                
+TABLE=tipi_calendario
+TABLE=TIPI_INCARICO
+TABLE=tipi_rapporto              
+TABLE=TIPI_SOGGETTO
+TABLE=TIPI_TITOLO
+TABLE=titoli_studio  
+TABLE=totalizzazione_causali       
+TABLE=totalizzazioni_voce          
+TABLE=trattamenti_contabili        
+TABLE=trattamenti_previdenziali    
+TABLE=validita_assegni_familiari   
+TABLE=validita_fiscale             
+TABLE=VALIDITA_QUALIFICA_MINISTERO
+TABLE=valori_base_voce             
+TABLE=valori_progressione_voce     
+TABLE=voci_contabili               
+TABLE=voci_contabili_evento        
+TABLE=voci_deliberate              
+TABLE=voci_economiche              
+TABLE=voci_inail
+WHENEVER SQLERROR CONTINUE

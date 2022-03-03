@@ -1,0 +1,22 @@
+REM ============================================================
+REM   CREA table KEY_ERROR_LOG                                  
+REM ============================================================
+create table KEY_ERROR_LOG ( ERROR_ID number NOT NULL
+                           , ERROR_SESSION number
+                           , ERROR_DATE date
+                           , ERROR_TEXT varchar2(2000)
+                           , ERROR_USER varchar2(8)
+                           , ERROR_USERTEXT varchar2(2000)
+                           , ERROR_TYPE varchar2(1)
+                           , constraint KEEL_PK primary key (ERROR_ID)
+                           )
+/
+comment on table KEY_ERROR_LOG is 'KEEL - Tabella degli Errori di applicazione'
+/
+CREATE SEQUENCE keel_sq
+  START WITH 1
+  MINVALUE 1
+  NOCYCLE
+  CACHE 20
+  NOORDER
+/

@@ -1,0 +1,141 @@
+start crp_pgpcprat.sql
+start crp_pgpcqual.sql
+start crp_pgpcvoci.sql
+start crp_pgpcimpo.sql
+
+
+delete from a_passi_proc where voce_menu = 'PGPCIMPO';
+
+INSERT INTO A_PASSI_PROC ( VOCE_MENU, PASSO, TITOLO, TITOLO_AL1, TITOLO_AL2, TIPO, MODULO, STRINGA,
+STAMPA, GRUPPO_LING ) VALUES ( 
+'PGPCIMPO', 1, 'Creazione File Importi', NULL, NULL, 'Q', 'PGPCIMPO', NULL, NULL, 'N'); 
+INSERT INTO A_PASSI_PROC ( VOCE_MENU, PASSO, TITOLO, TITOLO_AL1, TITOLO_AL2, TIPO, MODULO, STRINGA,
+STAMPA, GRUPPO_LING ) VALUES ( 
+'PGPCIMPO', 91, 'Errori di Elaborazione', NULL, NULL, 'R', 'ACARAPPR', NULL, 'PGPCIMPO'
+, 'N'); 
+INSERT INTO A_PASSI_PROC ( VOCE_MENU, PASSO, TITOLO, TITOLO_AL1, TITOLO_AL2, TIPO, MODULO, STRINGA,
+STAMPA, GRUPPO_LING ) VALUES ( 
+'PGPCIMPO', 92, 'Cancellazione errori', NULL, NULL, 'Q', 'ACACANRP', NULL, NULL, 'N'); 
+INSERT INTO A_PASSI_PROC ( VOCE_MENU, PASSO, TITOLO, TITOLO_AL1, TITOLO_AL2, TIPO, MODULO, STRINGA,
+STAMPA, GRUPPO_LING ) VALUES ( 
+'PGPCIMPO', 2, 'Creazione file Importi', NULL, NULL, 'R', 'SI4V3WAS', NULL, NULL
+, 'N'); 
+INSERT INTO A_PASSI_PROC ( VOCE_MENU, PASSO, TITOLO, TITOLO_AL1, TITOLO_AL2, TIPO, MODULO, STRINGA,
+STAMPA, GRUPPO_LING ) VALUES ( 
+'PGPCIMPO', 3, 'Lista Importi Retribuzioni esportati', NULL, NULL, 'R', 'PGPLIMPO'
+, NULL, 'PGPLIMPO', 'N'); 
+INSERT INTO A_PASSI_PROC ( VOCE_MENU, PASSO, TITOLO, TITOLO_AL1, TITOLO_AL2, TIPO, MODULO, STRINGA,
+STAMPA, GRUPPO_LING ) VALUES ( 
+'PGPCIMPO', 4, 'Cancellazione appoggio stampe', NULL, NULL, 'Q', 'ACACANAS', NULL
+, NULL, 'N'); 
+INSERT INTO A_PASSI_PROC ( VOCE_MENU, PASSO, TITOLO, TITOLO_AL1, TITOLO_AL2, TIPO, MODULO, STRINGA,
+STAMPA, GRUPPO_LING ) VALUES ( 
+'PGPCIMPO', 5, 'Verifica presenza segnalazioni', NULL, NULL, 'Q', 'CHK_ERR', NULL
+, NULL, 'N'); 
+
+insert into a_selezioni (parametro,voce_menu,sequenza,descrizione,lunghezza,formato,obbligo,valore_default,dominio,alias,gruppo_alias,numero_fk) 
+values ('SE_ERRORE','PGPCIMPO','0','verifica segnalazioni errore','2','U','N','NO','','','','');
+
+
+delete from a_passi_proc where voce_menu = 'PGPCPRAT';
+
+INSERT INTO A_PASSI_PROC ( VOCE_MENU, PASSO, TITOLO, TITOLO_AL1, TITOLO_AL2, TIPO, MODULO, STRINGA,
+STAMPA, GRUPPO_LING ) VALUES ( 
+'PGPCPRAT', 1, 'Creazione file Pratiche', NULL, NULL, 'Q', 'PGPCPRAT', NULL, NULL
+, 'N'); 
+INSERT INTO A_PASSI_PROC ( VOCE_MENU, PASSO, TITOLO, TITOLO_AL1, TITOLO_AL2, TIPO, MODULO, STRINGA,
+STAMPA, GRUPPO_LING ) VALUES ( 
+'PGPCPRAT', 91, 'Errori di Elaborazione', NULL, NULL, 'R', 'ACARAPPR', NULL, 'PGPCPRAT'
+, 'N'); 
+INSERT INTO A_PASSI_PROC ( VOCE_MENU, PASSO, TITOLO, TITOLO_AL1, TITOLO_AL2, TIPO, MODULO, STRINGA,
+STAMPA, GRUPPO_LING ) VALUES ( 
+'PGPCPRAT', 92, 'Cancellazione errori', NULL, NULL, 'Q', 'ACACANRP', NULL, NULL, 'N'); 
+INSERT INTO A_PASSI_PROC ( VOCE_MENU, PASSO, TITOLO, TITOLO_AL1, TITOLO_AL2, TIPO, MODULO, STRINGA,
+STAMPA, GRUPPO_LING ) VALUES ( 
+'PGPCPRAT', 2, 'Creazione file Pratiche', NULL, NULL, 'R', 'SI4V3WAS', NULL, NULL
+, 'N'); 
+INSERT INTO A_PASSI_PROC ( VOCE_MENU, PASSO, TITOLO, TITOLO_AL1, TITOLO_AL2, TIPO, MODULO, STRINGA,
+STAMPA, GRUPPO_LING ) VALUES ( 
+'PGPCPRAT', 3, 'Lista Pratiche Esportate', NULL, NULL, 'R', 'PGPLPRAT', NULL, 'PGPLPRAT'
+, 'N'); 
+INSERT INTO A_PASSI_PROC ( VOCE_MENU, PASSO, TITOLO, TITOLO_AL1, TITOLO_AL2, TIPO, MODULO, STRINGA,
+STAMPA, GRUPPO_LING ) VALUES ( 
+'PGPCPRAT', 4, 'Cancellazione appoggio stampe', NULL, NULL, 'Q', 'ACACANAS', NULL, NULL
+, 'N'); 
+INSERT INTO A_PASSI_PROC ( VOCE_MENU, PASSO, TITOLO, TITOLO_AL1, TITOLO_AL2, TIPO, MODULO, STRINGA,
+STAMPA, GRUPPO_LING ) VALUES ( 
+'PGPCPRAT', 5, 'Verifica presenza segnalazioni', NULL, NULL, 'Q', 'CHK_ERR', NULL
+, NULL, 'N'); 
+
+insert into a_selezioni (parametro,voce_menu,sequenza,descrizione,lunghezza,formato,obbligo,valore_default,dominio,alias,gruppo_alias,numero_fk) 
+values ('SE_ERRORE','PGPCPRAT','0','verifica segnalazioni errore','2','U','N','NO','','','','');
+
+
+delete from a_passi_proc where voce_menu = 'PGPCQUAL';
+
+INSERT INTO A_PASSI_PROC ( VOCE_MENU, PASSO, TITOLO, TITOLO_AL1, TITOLO_AL2, TIPO, MODULO, STRINGA,
+STAMPA, GRUPPO_LING ) VALUES ( 
+'PGPCQUAL', 1, 'Creazione file Qualifiche Ente', NULL, NULL, 'Q', 'PGPCQUAL', NULL
+, NULL, 'N'); 
+INSERT INTO A_PASSI_PROC ( VOCE_MENU, PASSO, TITOLO, TITOLO_AL1, TITOLO_AL2, TIPO, MODULO, STRINGA,
+STAMPA, GRUPPO_LING ) VALUES ( 
+'PGPCQUAL', 91, 'Errori di Elaborazione', NULL, NULL, 'R', 'ACARAPPR', NULL, 'PGPCQUAL'
+, 'N'); 
+INSERT INTO A_PASSI_PROC ( VOCE_MENU, PASSO, TITOLO, TITOLO_AL1, TITOLO_AL2, TIPO, MODULO, STRINGA,
+STAMPA, GRUPPO_LING ) VALUES ( 
+'PGPCQUAL', 92, 'Cancellazione errori', NULL, NULL, 'Q', 'ACACANRP', NULL, NULL, 'N'); 
+INSERT INTO A_PASSI_PROC ( VOCE_MENU, PASSO, TITOLO, TITOLO_AL1, TITOLO_AL2, TIPO, MODULO, STRINGA,
+STAMPA, GRUPPO_LING ) VALUES ( 
+'PGPCQUAL', 2, 'Creazione file Qualifiche Ente', NULL, NULL, 'R', 'SI4V3WAS', NULL
+, NULL, 'N'); 
+INSERT INTO A_PASSI_PROC ( VOCE_MENU, PASSO, TITOLO, TITOLO_AL1, TITOLO_AL2, TIPO, MODULO, STRINGA,
+STAMPA, GRUPPO_LING ) VALUES ( 
+'PGPCQUAL', 3, 'Lista qualifiche ente esportate', NULL, NULL, 'R', 'PGPLQUAL', NULL
+, 'PGPLQUAL', 'N'); 
+INSERT INTO A_PASSI_PROC ( VOCE_MENU, PASSO, TITOLO, TITOLO_AL1, TITOLO_AL2, TIPO, MODULO, STRINGA,
+STAMPA, GRUPPO_LING ) VALUES ( 
+'PGPCQUAL', 4, 'Cancellazione appoggio stampe', NULL, NULL, 'Q', 'ACACANAS', NULL
+, NULL, 'N'); 
+INSERT INTO A_PASSI_PROC ( VOCE_MENU, PASSO, TITOLO, TITOLO_AL1, TITOLO_AL2, TIPO, MODULO, STRINGA,
+STAMPA, GRUPPO_LING ) VALUES ( 
+'PGPCQUAL', 5, 'Verifica presenza segnalazioni', NULL, NULL, 'Q', 'CHK_ERR', NULL
+, NULL, 'N'); 
+
+insert into a_selezioni (parametro,voce_menu,sequenza,descrizione,lunghezza,formato,obbligo,valore_default,dominio,alias,gruppo_alias,numero_fk) 
+values ('SE_ERRORE','PGPCQUAL','0','verifica segnalazioni errore','2','U','N','NO','','','','');
+
+
+
+delete from a_passi_proc where voce_menu = 'PGPCVOCI';
+
+INSERT INTO A_PASSI_PROC ( VOCE_MENU, PASSO, TITOLO, TITOLO_AL1, TITOLO_AL2, TIPO, MODULO, STRINGA,
+STAMPA, GRUPPO_LING ) VALUES ( 
+'PGPCVOCI', 1, 'Creazione file Voci Emolumenti', NULL, NULL, 'Q', 'PGPCVOCI', NULL
+, NULL, 'N'); 
+INSERT INTO A_PASSI_PROC ( VOCE_MENU, PASSO, TITOLO, TITOLO_AL1, TITOLO_AL2, TIPO, MODULO, STRINGA,
+STAMPA, GRUPPO_LING ) VALUES ( 
+'PGPCVOCI', 91, 'Errori di Elaborazione', NULL, NULL, 'R', 'ACARAPPR', NULL, 'PGPCVOCI'
+, 'N'); 
+INSERT INTO A_PASSI_PROC ( VOCE_MENU, PASSO, TITOLO, TITOLO_AL1, TITOLO_AL2, TIPO, MODULO, STRINGA,
+STAMPA, GRUPPO_LING ) VALUES ( 
+'PGPCVOCI', 92, 'Cancellazione errori', NULL, NULL, 'Q', 'ACACANRP', NULL, NULL, 'N'); 
+INSERT INTO A_PASSI_PROC ( VOCE_MENU, PASSO, TITOLO, TITOLO_AL1, TITOLO_AL2, TIPO, MODULO, STRINGA,
+STAMPA, GRUPPO_LING ) VALUES ( 
+'PGPCVOCI', 2, 'Creazione file Voci Emolumenti', NULL, NULL, 'R', 'SI4V3WAS', NULL
+, NULL, 'N'); 
+INSERT INTO A_PASSI_PROC ( VOCE_MENU, PASSO, TITOLO, TITOLO_AL1, TITOLO_AL2, TIPO, MODULO, STRINGA,
+STAMPA, GRUPPO_LING ) VALUES ( 
+'PGPCVOCI', 3, 'Lista Voci emolumenti esportate', NULL, NULL, 'R', 'PGPLVOCI', NULL
+, 'PGPLVOCI', 'N'); 
+INSERT INTO A_PASSI_PROC ( VOCE_MENU, PASSO, TITOLO, TITOLO_AL1, TITOLO_AL2, TIPO, MODULO, STRINGA,
+STAMPA, GRUPPO_LING ) VALUES ( 
+'PGPCVOCI', 4, 'Cancellazione appoggio stampe', NULL, NULL, 'Q', 'ACACANAS', NULL
+, NULL, 'N'); 
+INSERT INTO A_PASSI_PROC ( VOCE_MENU, PASSO, TITOLO, TITOLO_AL1, TITOLO_AL2, TIPO, MODULO, STRINGA,
+STAMPA, GRUPPO_LING ) VALUES ( 
+'PGPCVOCI', 5, 'Verifica presenza segnalazioni', NULL, NULL, 'Q', 'CHK_ERR', NULL
+, NULL, 'N'); 
+
+insert into a_selezioni (parametro,voce_menu,sequenza,descrizione,lunghezza,formato,obbligo,valore_default,dominio,alias,gruppo_alias,numero_fk) 
+values ('SE_ERRORE','PGPCVOCI','0','verifica segnalazioni errore','2','U','N','NO','','','','');
+

@@ -1,0 +1,1 @@
+alter table assicurazioni_inail modify posizione NOT NULL;

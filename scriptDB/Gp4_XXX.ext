@@ -1,0 +1,26 @@
+FILE=Gp4_ins_xxx.sql
+SET TERMOUT OFF
+TABLE=ente
+TABLE=estrazione_report
+TABLE=estrazione_righe_contabili
+TABLE=estrazione_valori_contabili
+TABLE=relazione_attr_chiave
+TABLE=relazione_attr_estrazione
+TABLE=relazione_attributi
+TABLE=relazione_chiavi
+TABLE=relazione_chiavi_estrazione
+TABLE=relazione_cond_estrazione
+TABLE=relazione_cond_oggetto
+TABLE=relazione_oggetti
+TABLE=relazione_oggetti_estrazione
+TABLE=relazione_rife_oggetto
+WHENEVER SQLERROR CONTINUE
+
+
+
+
+
+
+
+
+

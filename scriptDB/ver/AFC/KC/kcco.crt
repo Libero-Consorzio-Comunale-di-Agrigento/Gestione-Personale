@@ -1,0 +1,10 @@
+CREATE TABLE KEY_CONSTRAINT_COLUMN
+(
+ NOME                                     VARCHAR2(30)	NOT NULL,
+ SEQUENZA                                 NUMBER(3)	NOT NULL,
+ COLONNA                                  VARCHAR2(30)	NOT NULL,
+ RIF_COLONNA                              VARCHAR2(30)
+)
+/
+CREATE UNIQUE INDEX KCCO_PK on KEY_CONSTRAINT_COLUMN (NOME,COLONNA)
+/

@@ -1,0 +1,7 @@
+CREATE OR REPLACE TRIGGER DDMA_TC
+   after INSERT or UPDATE or DELETE on DENUNCIA_DMA
+BEGIN
+   IntegrityPackage.Exec_PostEvent;
+END;
+
+/ 

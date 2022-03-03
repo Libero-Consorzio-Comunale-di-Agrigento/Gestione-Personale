@@ -1,0 +1,30 @@
+
+//
+// File .DEF per Base Dati Generale Progetto GP4  Modulo Anagrafe Matricolare        
+// --------------------------------------------------------------------------        
+
+       ,INSTALL,sql,,B,P00chk.sql       ,[usr], Verifica esistenza user di progetto
+PAL+GP4,INSTALL,sql,,I,Gp4_ins_pal_0.sql,     , Caricamento Parametri Enti Locali
+PAL+GP4,INSTALL,sql,,I,Gp4_ins_pal_1.sql,     , Caricamento Parametri Enti Locali
+PAL+GP4,INSTALL,sql,,I,Gp4_ins_pal_2.sql,     , Caricamento Parametri Enti Locali
+PAL+GP4,INSTALL,sql,,I,Gp4_ins_pal_3.sql,     , Caricamento Parametri Enti Locali
+PAL+GP4,INSTALL,sql,,I,Gp4_ins_pal_4.sql,     , Caricamento Parametri Enti Locali
+PAL+GP4,INSTALL,sql,,I,Gp4_ins_pal_5.sql,     , Caricamento Parametri Enti Locali
+PAL+GP4,INSTALL,sql,,I,Gp4_ins_pal_6.sql,     , Caricamento Parametri Enti Locali
+PAL+GP4,INSTALL,sql,,I,Gp4_ins_pal_7.sql,     , Caricamento Parametri Enti Locali
+SAN+GP4,INSTALL,sql,,I,Gp4_ins_san_0.sql,     , Caricamento Parametri Sanità
+SAN+GP4,INSTALL,sql,,I,Gp4_ins_san_1.sql,     , Caricamento Parametri Sanità
+SAN+GP4,INSTALL,sql,,I,Gp4_ins_san_2.sql,     , Caricamento Parametri Sanità
+SAN+GP4,INSTALL,sql,,I,Gp4_ins_san_3.sql,     , Caricamento Parametri Sanità
+SAN+GP4,INSTALL,sql,,I,Gp4_ins_san_4.sql,     , Caricamento Parametri Sanità
+SAN+GP4,INSTALL,sql,,I,Gp4_ins_san_5.sql,     , Caricamento Parametri Sanità
+SAN+GP4,INSTALL,sql,,I,Gp4_ins_san_6.sql,     , Caricamento Parametri Sanità
+SAN+GP4,INSTALL,sql,,I,Gp4_ins_san_7.sql,     , Caricamento Parametri Sanità
+XXX+GP4,INSTALL,sql,,I,Gp4_ins_xxx.sql  ,     , Caricamento Parametri di altri ambiti contrattuali
+       ,INSTALL,sql,,I,gp4_crq_c.sql    ,     , Creazione sequence di progetto
+       ,INSTALL,sql,,I,Gp4am_ins.sql    ,     , Abilitazione voci di menù del modulo GP4AM
+       ,INSTALL,sql,,I,gp4do_migrazione.sql,      , Migrazione dati verso le tabelle della DO
+       ,INSTALL,sql,,I,crf_gp4gm.sql       ,      , Creazione function e trigger di database nuovi del GM
+       ,INSTALL,sql,,I,crf_gp4do.sql       ,      , Creazione function e trigger di database della DO
+       ,INSTALL,sql,,I,Gp4_del_pers_menu.sql, , Eliminazione voci di menù già disabilitate per il Cliente
+       ,INSTALL,sql,,I,Gp4_crea_viste.sql, , creazione delle viste da DESRE

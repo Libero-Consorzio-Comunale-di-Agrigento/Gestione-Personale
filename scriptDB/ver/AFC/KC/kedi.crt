@@ -1,0 +1,12 @@
+REM ============================================================
+REM   CREA table KEY_DICTIONARY 
+REM ============================================================
+CREATE TABLE KEY_DICTIONARY ( TABELLA         VARCHAR2(30) NOT NULL
+                            , COLONNA         VARCHAR2(30) NOT NULL
+                            , PK              VARCHAR2(240) NOT NULL
+                            , LINGUA          VARCHAR2(1)	NOT NULL
+                            , TESTO           VARCHAR2(2000)
+                            , constraint KEDI_PK primary key (TABELLA,COLONNA,PK,LINGUA)
+                            )
+
+/

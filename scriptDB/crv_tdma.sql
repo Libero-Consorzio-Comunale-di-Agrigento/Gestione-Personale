@@ -1,0 +1,75 @@
+CREATE OR REPLACE VIEW TOTALI_VERSAMENTI_DMA
+( ANNO
+, MESE
+, CF_DIC
+, CASSA
+, RIFERIMENTO
+, VERSAMENTO
+, DATA_VERSAMENTO
+, PAGAMENTO
+, CONTO_CORRENTE
+, ESTREMI_PAGAMENTO
+, CONTR_PENS            
+, CONTR_PENS_CN        
+, CONTR_PENS_SUD       
+, CONTR_PENS_CN_407     
+, CONTR_PENS_SUD_407   
+, CONTR_L135            
+, CONTR_SU_ECCEDENZA    
+, CONTR_L166            
+, CONTR_TFS             
+, CONTR_TFR             
+, CONTR_ULT_TFR		
+, CONTR_CASSA_CREDITO   
+, CONTR_ENPDEDP         
+, RISCATTO_PENS        
+, RICONGIUNZIONE        
+, RISCATTO_TFS          
+, MUTUO                 
+, PRESTITO              
+, RISCATTO_TFR          
+, RUOLO                
+, VERS_NO_IPN           
+, SANZIONI              
+, ECCEDENZE             
+, ANTICIPAZIONI         
+) AS 
+SELECT 
+  VDZ2.ANNO
+, VDZ2.MESE
+, VDZ2.CF_DIC
+, VDZ2.CASSA
+, VDZ2.RIFERIMENTO
+, VDZ2.VERSAMENTO
+, VDZ2.DATA_VERSAMENTO
+, VDZ2.PAGAMENTO
+, VDZ2.CONTO_CORRENTE
+, VDZ2.ESTREMI_PAGAMENTO
+, TOZ2.CONTR_PENS            
+, TOZ2.CONTR_PENS_CN        
+, TOZ2.CONTR_PENS_SUD       
+, TOZ2.CONTR_PENS_CN_407     
+, TOZ2.CONTR_PENS_SUD_407   
+, TOZ2.CONTR_L135            
+, TOZ2.CONTR_SU_ECCEDENZA    
+, TOZ2.CONTR_L166            
+, TOZ2.CONTR_TFS             
+, TOZ2.CONTR_TFR             
+, TOZ2.CONTR_ULT_TFR		
+, TOZ2.CONTR_CASSA_CREDITO   
+, TOZ2.CONTR_ENPDEDP         
+, TOZ2.RISCATTO_PENS        
+, TOZ2.RICONGIUNZIONE        
+, TOZ2.RISCATTO_TFS          
+, TOZ2.MUTUO                 
+, TOZ2.PRESTITO              
+, TOZ2.RISCATTO_TFR          
+, TOZ2.RUOLO                
+, TOZ2.VERS_NO_IPN           
+, TOZ2.SANZIONI              
+, TOZ2.ECCEDENZE             
+, TOZ2.ANTICIPAZIONI         
+from TOTALI_DMA_Z2     toz2
+   , VERSAMENTI_DMA_Z2 vdz2
+where vdz2.vdz2_id = toz2.vdz2_id
+/

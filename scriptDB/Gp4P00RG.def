@@ -1,0 +1,9 @@
+//
+// File .DEF per Base Dati Generale Progetto GP4
+// ---------------------------------------------
+
+// DEF di appoggio per eseguire la sola registrazione del progetto in INSTALL
+// nel caso di passaggio dalla procedura Forms 3.0 a quella Forms 4.5
+
+,INSTALL,sql, ,I,[ad4]Ad4DB_g.sql,[usr],Creazione GRANT su Amministratore Base Dati,[usr_ad4],[psw_ad4] 
+,INSTALL,sql, ,I,[ad4]Si4GraUS.sql,[usr],GRANT specifici a user di Base Dati,system,manager

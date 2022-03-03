@@ -1,0 +1,6 @@
+INSERT INTO A_ERRORI ( ERRORE, DESCRIZIONE, DESCRIZIONE_AL1, DESCRIZIONE_AL2,
+PROPRIETA ) VALUES ( 
+'P00606', 'Indirizzo E-Mail non valido', NULL, NULL, NULL);
+
+-- contiene start anche per A21264 - A21362
+start crp_PECSMORM.sql

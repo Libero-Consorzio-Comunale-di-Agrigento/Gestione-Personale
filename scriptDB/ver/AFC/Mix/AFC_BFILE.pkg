@@ -1,0 +1,148 @@
+CREATE OR REPLACE package AFC_BFILE is
+/******************************************************************************
+ NOME:        AFC_BFILE.
+ DESCRIZIONE: Funzioni per la gestione dei Binary File del DataBase.
+ 
+ ANNOTAZIONI: .
+
+ REVISIONI:
+ Rev. Data       Autore Descrizione
+ ---- ---------- ------ ------------------------------------------------------
+ 00   05/12/2005 MF     Prima emissione.                   
+******************************************************************************/
+   s_revisione constant VARCHAR2(30) := 'V1.00';
+ 
+   function versione return VARCHAR2;
+
+   /******************************************************************************
+    NOME:        get_dirPath.
+    DESCRIZIONE: Ottiene il nome del Path di File System sulla base del DirName indicato.
+
+    PARAMETRI:   p_dirName  Nome logico attribuito alla Directory
+   ******************************************************************************/   
+   function get_dirPath
+   ( p_dirName IN varchar2 
+   ) RETURN varchar2;
+   
+   /******************************************************************************
+    NOME:        get_dirName.
+    DESCRIZIONE: Ottiene il nome logico della directory sulla base del Path di File System.
+    
+    PARAMETRI:   p_dirPath  Nome fisico della Directory
+   ******************************************************************************/   
+   function get_dirName
+   ( p_dirPath IN varchar2 
+   ) RETURN varchar2;
+   
+end AFC_BFILE;
+/
+CREATE OR REPLACE package body AFC_BFILE is
+/******************************************************************************
+ NOME:        AFC_BFILE.
+ DESCRIZIONE: Funzioni per la gestione dei Binary File del DataBase.
+
+ ANNOTAZIONI: .
+ REVISIONI:
+ Rev. Data       Autore Descrizione
+ ---- ---------- ------ ------------------------------------------------------
+ 000 05/12/2005  MF     Prima emissione.
+******************************************************************************/
+   s_revisione_body constant VARCHAR2(30) := '000';
+
+   function versione return VARCHAR2 is
+   /******************************************************************************
+    NOME:        versione.
+    DESCRIZIONE: Restituisce versione e revisione di distribuzione del package.
+   
+    RITORNA:     VARCHAR2 stringa contenente versione e revisione.
+    NOTE:        Primo numero  : versione compatibilità del Package.
+                 Secondo numero: revisione del Package specification.
+                 Terzo numero  : revisione del Package body.
+   ******************************************************************************/
+   begin
+      return s_revisione||'.'||nvl(s_revisione_body,'000');
+   end versione;
+   
+--  
+   
+   function get_dirPath
+   ( p_dirName IN varchar2 )
+   RETURN varchar2
+   IS
+   /******************************************************************************
+    NOME:        get_dirPath.
+    DESCRIZIONE: Ottiene il nome del Path di File System sulla base del DirName indicato.
+
+    PARAMETRI:   p_dirName  Nome logico attribuito alla Directory
+                 
+    REVISIONI:
+     Rev. Data       Autore Descrizione
+     ---- ---------- ------ ------------------------------------------------------
+     000  05/12/2005 MF     Prima emissione.
+   ******************************************************************************/   
+      d_alias varchar2(2000);
+      d_path  varchar2(4000);
+   begin
+      if instr(p_dirName, '/') = 0 and instr(p_dirName, '\') = 0 then
+        d_alias := p_dirName;
+      else
+        d_alias := get_dirName(p_dirName);
+      end if;   
+     
+      -- ottiene il percorso fisico dal nome interno della directory
+      select directory_path
+        into d_path
+        from all_directories
+       where directory_name = d_alias
+      ;
+      RETURN d_path;
+      
+   exception
+      when no_data_found then
+	     RETURN '';
+   end get_dirPath;
+
+--
+   
+   function get_dirName
+   ( p_dirPath IN varchar2 )
+   RETURN varchar2
+   IS
+   /******************************************************************************
+    NOME:        get_dirName.
+    DESCRIZIONE: Ottiene il nome logico della directory sulla base del Path di File System.
+    
+    PARAMETRI:   p_dirPath  Nome fisico della Directory
+                 
+    REVISIONI:
+     Rev. Data       Autore Descrizione
+     ---- ---------- ------ ------------------------------------------------------
+     000  05/12/2005 MF     Prima emissione.
+   ******************************************************************************/   
+      d_name varchar2(4000);   
+   begin
+      if instr(p_dirPath, '/') = 0 and instr(p_dirPath, '\') = 0 then
+         -- conytrollo esistenza nome interno della Directory
+         select directory_name
+           into d_name
+           from all_directories
+          where directory_name = p_dirPath
+         ;
+      else
+         -- ottiene il nome interno del percorso fisico
+         select min(directory_name)
+           into d_name
+           from all_directories
+          where directory_path = p_dirPath
+         ;
+      end if;
+      
+      RETURN d_name;
+      
+   exception
+      when no_data_found then
+	     RETURN '';
+   end get_dirName;
+   
+end AFC_BFILE;
+/

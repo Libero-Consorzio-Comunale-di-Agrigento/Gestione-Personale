@@ -1,0 +1,5 @@
+FILE=Gp4_ins_pal_1.sql
+SET TERMOUT OFF
+TABLE=addizionale_irpef_comunale
+TABLE=addizionale_irpef_regionale
+WHENEVER SQLERROR CONTINUE

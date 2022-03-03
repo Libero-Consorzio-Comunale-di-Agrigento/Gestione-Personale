@@ -1,0 +1,1 @@
+drop sequence strm_sq;

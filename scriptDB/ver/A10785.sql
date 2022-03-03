@@ -1,0 +1,1 @@
+alter table individui_modificati modify sindacato varchar2(10);  

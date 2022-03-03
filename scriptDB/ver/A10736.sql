@@ -1,0 +1,4 @@
+ALTER TABLE CODICI_ATTRIBUTO ADD (MAX_NR NUMBER);
+
+
+start crt_coat.sql

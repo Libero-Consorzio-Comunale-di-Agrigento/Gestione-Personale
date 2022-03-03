@@ -1,0 +1,8 @@
+FILE=Gp4_ins_menu2.sql
+SET TERMOUT OFF 
+TABLE=A_DOMINI_SELEZIONI where dominio like 'P%'
+TABLE=A_FUNZIONI_CHIAMATE where voce_chiamante like 'P%'
+TABLE=A_GUIDE_O  where guida_o like 'P%'
+TABLE=A_GUIDE_V  where guida_v like 'P%'
+TABLE=A_INDICI_AIUTO where ambiente ='P00'
+WHENEVER SQLERROR CONTINUE

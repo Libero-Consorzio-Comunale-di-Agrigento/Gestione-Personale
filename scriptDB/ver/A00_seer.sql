@@ -1,0 +1,1 @@
+alter table a_segnalazioni_errore modify precisazione varchar2(2000);

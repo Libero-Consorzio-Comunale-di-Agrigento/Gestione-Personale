@@ -1,0 +1,70 @@
+INSERT INTO PEC_REF_CODES ( RV_LOW_VALUE, RV_ABBREVIATION, RV_DOMAIN, RV_MEANING, RV_TYPE )
+VALUES ( 'A', 'A', 'ARCHIVIO_ASSISTENZA_FISCALE.TIPO_CONGUAGLIO'
+       , 'Conguaglio tardivo derivante da Mod. 730-3', 'CFG');
+INSERT INTO PEC_REF_CODES ( RV_LOW_VALUE, RV_ABBREVIATION, RV_DOMAIN, RV_MEANING, RV_TYPE )
+VALUES ( 'B', 'B', 'ARCHIVIO_ASSISTENZA_FISCALE.TIPO_CONGUAGLIO'
+       , 'Conguaglio tardivo derivante da comunicazione Mod. 730-4 pervenuta entro i termini', 'CFG');
+INSERT INTO PEC_REF_CODES ( RV_LOW_VALUE, RV_ABBREVIATION, RV_DOMAIN, RV_MEANING, RV_TYPE )
+VALUES ( 'C', 'C', 'ARCHIVIO_ASSISTENZA_FISCALE.TIPO_CONGUAGLIO'
+       , 'Conguaglio conseguente a comunicazione tardiva di Mod. 730-4', 'CFG');
+INSERT INTO PEC_REF_CODES ( RV_LOW_VALUE, RV_ABBREVIATION, RV_DOMAIN, RV_MEANING, RV_TYPE )
+VALUES ( 'D', 'D', 'ARCHIVIO_ASSISTENZA_FISCALE.TIPO_CONGUAGLIO'
+       , 'Mod. 730-3 o Mod. 730-4 dal quale non risulta alcun debito o credito', 'CFG');
+
+INSERT INTO PEC_REF_CODES ( RV_LOW_VALUE, RV_ABBREVIATION, RV_DOMAIN, RV_MEANING, RV_TYPE )
+VALUES ( 'A', 'A', 'ARCHIVIO_ASSISTENZA_FISCALE.RETTIFICATIVO'
+       , 'Conguaglio derivante da Mod. 730-3 o 730-4 rettificativo', 'CFG');
+INSERT INTO PEC_REF_CODES ( RV_LOW_VALUE, RV_ABBREVIATION, RV_DOMAIN, RV_MEANING, RV_TYPE )
+VALUES ( 'B', 'B', 'ARCHIVIO_ASSISTENZA_FISCALE.RETTIFICATIVO'
+       , 'Conguaglio tardivo derivante da Mod. 730-3 rettificativo', 'CFG');
+INSERT INTO PEC_REF_CODES ( RV_LOW_VALUE, RV_ABBREVIATION, RV_DOMAIN, RV_MEANING, RV_TYPE )
+VALUES ( 'C', 'C', 'ARCHIVIO_ASSISTENZA_FISCALE.RETTIFICATIVO'
+       , 'Conguaglio tardivo derivante da comunicazione Mod. 730-4 rettificativa', 'CFG');
+INSERT INTO PEC_REF_CODES ( RV_LOW_VALUE, RV_ABBREVIATION, RV_DOMAIN, RV_MEANING, RV_TYPE )
+VALUES ( 'D', 'D', 'ARCHIVIO_ASSISTENZA_FISCALE.RETTIFICATIVO'
+       , 'Conguaglio a seguito di rettifica di una precedente comunicazione tardivamente pervenuta '
+       ||'al sostituto per la quale non e'' stato effettuato il conguaglio', 'CFG');
+INSERT INTO PEC_REF_CODES ( RV_LOW_VALUE, RV_ABBREVIATION, RV_DOMAIN, RV_MEANING, RV_TYPE )
+VALUES ( 'E', 'E', 'ARCHIVIO_ASSISTENZA_FISCALE.RETTIFICATIVO'
+       , 'Conguaglio a seguito di rettifica di una precedente comunicazione tempestivamente pervenuta '
+       ||'al sostituto ma per la quale non e'' stato effettuato il conguaglio', 'CFG');
+INSERT INTO PEC_REF_CODES ( RV_LOW_VALUE, RV_ABBREVIATION, RV_DOMAIN, RV_MEANING, RV_TYPE )
+VALUES ( 'F', 'F', 'ARCHIVIO_ASSISTENZA_FISCALE.RETTIFICATIVO'
+       , 'Rettifica del solo codice regione', 'CFG');
+INSERT INTO PEC_REF_CODES ( RV_LOW_VALUE, RV_ABBREVIATION, RV_DOMAIN, RV_MEANING, RV_TYPE )
+VALUES ( 'G', 'G', 'ARCHIVIO_ASSISTENZA_FISCALE.RETTIFICATIVO'
+       , 'Rettifica del solo codice comune', 'CFG');
+
+INSERT INTO PEC_REF_CODES ( RV_LOW_VALUE, RV_ABBREVIATION, RV_DOMAIN, RV_MEANING, RV_TYPE )
+VALUES ( '1', '1', 'ARCHIVIO_ASSISTENZA_FISCALE.INTEGRATIVO'
+       , 'Conguaglio derivante da Mod. 730-4 integrativo', 'CFG');
+
+INSERT INTO PEC_REF_CODES ( RV_LOW_VALUE, RV_ABBREVIATION, RV_DOMAIN, RV_MEANING, RV_TYPE )
+VALUES ( 'A', 'A', 'ARCHIVIO_ASSISTENZA_FISCALE.ESITO'
+       , 'Richiesta di minore secondo o unico acconto', 'CFG');
+INSERT INTO PEC_REF_CODES ( RV_LOW_VALUE, RV_ABBREVIATION, RV_DOMAIN, RV_MEANING, RV_TYPE )
+VALUES ( 'B', 'B', 'ARCHIVIO_ASSISTENZA_FISCALE.ESITO'
+       , 'Tutti gli importi da esporre sono inferiori ad 1 unita'' di euro', 'CFG');
+
+INSERT INTO PEC_REF_CODES ( RV_LOW_VALUE, RV_ABBREVIATION, RV_DOMAIN, RV_MEANING, RV_TYPE )
+VALUES ( 'A', 'A', 'ARCHIVIO_ASSISTENZA_FISCALE.ESITO_CONGUAGLI'
+       , 'Cessazione del rapporto di lavoro', 'CFG');
+INSERT INTO PEC_REF_CODES ( RV_LOW_VALUE, RV_ABBREVIATION, RV_DOMAIN, RV_MEANING, RV_TYPE )
+VALUES ( 'B', 'B', 'ARCHIVIO_ASSISTENZA_FISCALE.ESITO_CONGUAGLI'
+       , 'Aspettativa senza retribuzione', 'CFG');
+INSERT INTO PEC_REF_CODES ( RV_LOW_VALUE, RV_ABBREVIATION, RV_DOMAIN, RV_MEANING, RV_TYPE )
+VALUES ( 'C', 'C', 'ARCHIVIO_ASSISTENZA_FISCALE.ESITO_CONGUAGLI'
+       , 'Decesso', 'CFG');
+INSERT INTO PEC_REF_CODES ( RV_LOW_VALUE, RV_ABBREVIATION, RV_DOMAIN, RV_MEANING, RV_TYPE )
+VALUES ( 'D', 'D', 'ARCHIVIO_ASSISTENZA_FISCALE.ESITO_CONGUAGLI'
+       , 'Retribuzione insufficiente', 'CFG');
+INSERT INTO PEC_REF_CODES ( RV_LOW_VALUE, RV_ABBREVIATION, RV_DOMAIN, RV_MEANING, RV_TYPE )
+VALUES ( 'E', 'E', 'ARCHIVIO_ASSISTENZA_FISCALE.ESITO_CONGUAGLI'
+       , 'Rimborso non effettuato in tutto o in parte per incapienza del monte ritenute', 'CFG');
+INSERT INTO PEC_REF_CODES ( RV_LOW_VALUE, RV_ABBREVIATION, RV_DOMAIN, RV_MEANING, RV_TYPE )
+VALUES ( 'F', 'F', 'ARCHIVIO_ASSISTENZA_FISCALE.ESITO_CONGUAGLI'
+       , 'Passaggio di dipendenti senza interruzione del rapporto di lavoro', 'CFG');
+
+start crp_pec_reco.sql
+-- inclusa nel file A11279
+-- start crp_PECCASFI.sql

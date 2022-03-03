@@ -1,0 +1,4 @@
+FILE=Gp4ir_ins.sql
+SET TERMOUT OFF 
+TABLE=A_MENU where voce_menu like 'PXIRIS%'
+WHENEVER SQLERROR CONTINUE

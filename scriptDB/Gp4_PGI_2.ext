@@ -1,0 +1,4 @@
+FILE=Gp4_ins_pgi_2.sql
+SET TERMOUT OFF
+TABLE=assegni_familiari
+WHENEVER SQLERROR CONTINUE

@@ -1,0 +1,55 @@
+//==========================================
+// Base Dati di Appoggio della Applicazione 
+//==========================================
+
+//  &DB	: se componente DB già esistente in precedente installazione     ( Aggiornamento )
+// !&DB	: se componente DB non già esistente in precedente installazione ( Nuova Installazione )
+
+
+// Table Gestione KeyConstraint di Si4
+//-------------------------------------
+
+ &DB|&GP4|&P00,INSTALL,sql, ,C,\Ins\Ver\AFC\KC\keco.crt       , ,Creazione Table KEY_CONSTRAINT
+ &DB|&GP4|&P00,INSTALL,sql, ,C,\Ins\Ver\AFC\KC\kcco.crt       , ,Creazione Table KEY_CONSTRAINT_COLUMN
+
+!&DB+!&GP4+!&P00,INSTALL,sql, ,C,\Ins\Ver\AFC\KC\afcKCkeco.sql  , ,Creazione Tables KEY_CONSTRAINTs
+!&DB+!&GP4+!&P00,INSTALL,sql, ,C,\Ins\Ver\AFC\KC\keel.crt       , ,Crea Table KEY_ERROR_LOG
+
+    ,INSTALL,sql, ,C,\Ins\Ver\AFC\KC\keel_tiu.trg       , ,crea trigger KEY_ERROR_LOG_TIU
+    ,INSTALL,sql, ,C,\Ins\Ver\AFC\KC\afcKCkeal.sql      , ,Creazione Tables DICTIONARY per ambienti linguistici
+
+    ,INSTALL,sql,O,I,\Ins\keco_ins.sql           , ,Caricamento Registrazioni in Tables KEY_CONSTRAINTs e Vista KEY_ERROR
+
+//------------------------------------------
+    ,INSTALL,sql, ,C,\Ins\Ver\AFC\IntegrityPackage.pkg   , ,Creazione Integrity Package 
+    ,INSTALL,sql, ,C,\Ins\Ver\AFC\UtilityPackage.pkg     , ,Creazione Utility Package
+
+// Componenti riusati di AFC e Standard Si4
+//------------------------------------------
+
+    ,INSTALL,sql, ,C,\Ins\Ver\AFC\DbC.pks           , ,Creazione DbC Package Specification
+    ,INSTALL,sql, ,C,\Ins\Ver\AFC\DbC.pkb           , ,Creazione DbC Package Body
+    ,INSTALL,sql, ,C,\Ins\Ver\AFC\afc.pks           , ,Creazione AFC Package Specification
+    ,INSTALL,sql, ,C,\Ins\Ver\AFC\KC\KeyPackage.pks , ,Creazione KEYPackage Specification
+    ,INSTALL,sql, ,C,\Ins\Ver\AFC\KC\KeyPackage.pkb , ,Creazione KEYPackage Body
+    ,INSTALL,sql, ,C,\Ins\Ver\AFC\KC\si4.pkg        , ,Creazione SI4 Package
+    ,INSTALL,sql, ,C,\Ins\Ver\AFC\afc.pkb           , ,Creazione AFC Package Body
+
+    ,INSTALL,sql, ,C,\Ins\Ver\AFC\AFC_Error.pks   , ,Creazione AFC_Error Package Specification
+    ,INSTALL,sql, ,C,\Ins\Ver\AFC\AFC_Error.pkb   , ,Creazione AFC_Error Package Body
+    ,INSTALL,sql, ,C,\Ins\Ver\AFC\AFC_DDL.pks     , ,Creazione AFC_DDL Package Specification
+    ,INSTALL,sql, ,C,\Ins\Ver\AFC\AFC_DDL.pkb     , ,Creazione AFC_DDL Package Body
+    ,INSTALL,sql, ,C,\Ins\Ver\AFC\AFC_DML.pks     , ,Creazione AFC_DML Package Specification
+    ,INSTALL,sql, ,C,\Ins\Ver\AFC\AFC_DML.pkb     , ,Creazione AFC_DML Package Body
+
+    ,INSTALL,sql, ,C,\Ins\Ver\AFC\Special\AFC_Periodo.pkg , ,Creazione AFC_Periodo Package
+
+    ,INSTALL,sql, ,C,\Ins\Ver\AFC\KC\Servererror_Handler.pks , ,Creazione Servererror_Handler Package Specification
+    ,INSTALL,sql, ,C,\Ins\Ver\AFC\KC\Servererror_Handler.pkb , ,Creazione Servererror_Handler Package Body
+    ,INSTALL,sql, ,C,\Ins\Ver\AFC\KC\Servererror_Trigger.trg , ,Creazione Servererror_Trigger
+
+!&DB+!&GP4+!&P00,INSTALL,sql, ,C,\Ins\Si4RE_c.sql            , ,Creazione Table REGISTRO
+
+    ,INSTALL,sql, ,C,\Ins\Si4RE_t.sql            , ,Creazione Package REGISTRO_UTILITY
+
+    ,INSTALL,sql, ,I,comp_all.sql            , , Ricompilazione cautelativa dei Packages sulla Base dati

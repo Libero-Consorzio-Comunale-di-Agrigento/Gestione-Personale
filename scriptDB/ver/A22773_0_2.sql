@@ -1,0 +1,1 @@
+insert into a_errori ( errore, descrizione, descrizione_al1, descrizione_al2,proprieta ) values ('P00249', 'Non esiste richiesta di rimborso per cui caricare lo storno!', null, null, null); 

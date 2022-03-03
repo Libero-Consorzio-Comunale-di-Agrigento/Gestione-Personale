@@ -1,0 +1,5 @@
+FILE=Gp4_ins_err.sql
+SET TERMOUT OFF
+TABLE=A_AIUTI_ERRORE where errore like 'P%'
+TABLE=A_ERRORI where errore like 'P%'
+WHENEVER SQLERROR CONTINUE

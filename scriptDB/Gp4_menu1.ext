@@ -1,0 +1,7 @@
+FILE=Gp4_ins_menu1.sql
+SET TERMOUT OFF 
+TABLE=A_CATALOGO_STAMPE where stampa like 'P%'
+TABLE=A_PASSI_PROC where voce_menu like 'P%' 
+TABLE=A_SELEZIONI where voce_menu like 'P%'
+TABLE=A_VOCI_MENU where ambiente = 'P00'
+WHENEVER SQLERROR CONTINUE

@@ -1,0 +1,13 @@
+FILE=Gp4_ref_codes_i.sql
+SET TERMOUT OFF 
+TABLE=gip_ref_codes delete
+TABLE=pam_ref_codes delete
+TABLE=pgm_ref_codes delete
+TABLE=pec_ref_codes delete
+TABLE=ppo_ref_codes delete
+TABLE=ppa_ref_codes delete
+TABLE=pip_ref_codes delete
+TABLE=pmt_ref_codes delete
+TABLE=peb_ref_codes delete
+TABLE=pcw_ref_codes delete
+WHENEVER SQLERROR CONTINUE

@@ -1,0 +1,126 @@
+SET SCAN OFF
+
+REM  Objects being generated in this file are:-
+REM TABLE
+REM      EVENTI_INFORTUNIO
+REM INDEX
+REM     EVIN_PK
+REM     EVIN_IK
+
+REM
+REM     EVIN - Eventi di Infortunio
+REM
+PROMPT 
+PROMPT Creating Table EVENTI_INFORTUNIO
+
+create table EVENTI_INFORTUNIO
+( CI                  NUMBER(8)      NULL,
+PROGRESSIVO           NUMBER(8)      NULL,
+QUALIFICA             VARCHAR2(20)   NULL,
+CONTRATTO             VARCHAR2(20)   NULL,
+COM_EVENTO            NUMBER(3)      NULL,
+PROV_EVENTO           NUMBER(3)      NULL,
+LUOGO_EVENTO          VARCHAR2(80)   NULL,
+SE_INTERNO            VARCHAR2(2)    NULL,
+REPARTO               VARCHAR2(30)   NULL,
+DATA                  DATE           NULL,
+ORA                   NUMBER(2)      NULL,
+ORA_LAVORO            NUMBER(2)      NULL,
+SE_NOTTURNO           VARCHAR2(2)    NULL,
+DATA_ABBANDONO        DATE           NULL,
+DATA_RIENTRO          DATE           NULL,
+DATA_COMUNICAZIONE    DATE           NULL,
+MOD_COMUNICAZIONE     VARCHAR2(30)   NULL,
+VERO                  VARCHAR2(2)    NULL,
+NON_VERO              VARCHAR2(160)  NULL,
+TIPO_LAVORAZIONE      VARCHAR2(80)   NULL,
+DESCRIZIONE           VARCHAR2(240)  NULL,
+FORMA                 NUMBER(2)      NULL,
+TESTIMONI             VARCHAR2(240)  NULL,
+DATA_VISITA           DATE           NULL,   
+PRESIDIO              VARCHAR2(30)   NULL,
+LESIONE               VARCHAR2(60)   NULL,
+CONDUCENTE            VARCHAR2(40)   NULL,
+RES_CONDUCENTE        VARCHAR2(40)   NULL,
+COM_CONDUCENTE        NUMBER(3)      NULL,
+PROV_CONDUCENTE       NUMBER(3)      NULL,
+CAP_CONDUCENTE        NUMBER(5)      NULL,
+PROPRIETARIO          VARCHAR2(40)   NULL,
+RES_PROPRIETARIO      VARCHAR2(40)   NULL,
+COM_PROPRIETARIO      NUMBER(3)      NULL,
+PROV_PROPRIETARIO     NUMBER(3)      NULL,
+CAP_PROPRIETARIO      NUMBER(5)      NULL,
+TARGA                 VARCHAR2(12)   NULL,
+ASSICURAZIONE         VARCHAR2(30)   NULL,
+RILEVATORE            VARCHAR2(30)   NULL,
+DATA_RICEZIONE        DATE           NULL, 
+DATA_DOCUMENTO        DATE           NULL,
+FIRMA                 VARCHAR2(30)   NULL,
+VALIDITA              VARCHAR2(2)    NOT NULL,
+RICONOSCIMENTO        VARCHAR2(2)    NULL,
+DATA_RICONOSCIMENTO   DATE           NULL,
+RICORSO               VARCHAR2(2)    NULL,
+DATA_RICORSO          DATE           NULL,
+ESITO_RICORSO         VARCHAR2(2)    NULL,
+DATA_CONVALIDA        DATE           NULL,
+RISARCIMENTO          VARCHAR2(1)    NULL,
+IMPORTO               NUMBER(12,2)   NULL,
+CITTADINANZA          VARCHAR(10)    NULL,
+ABBANDONO             VARCHAR(2)     NULL,
+ORA_ABBANDONO         VARCHAR(2)     NULL,
+LAVORO_CONSUETO       VARCHAR(2)     NULL,
+ATTIVITA_INFORTUNIO   VARCHAR(80)    NULL,
+IMPREVISTO_EVENTO     VARCHAR(80)    NULL,
+CONSEGUENZE_EVENTO    VARCHAR(80)    NULL,
+ALTEZZA               VARCHAR(4)     NULL,
+ASL_EVENTO            VARCHAR(5)     NULL,
+SEDE_LESIONE          VARCHAR(60)    NULL,
+QUALIFICA_INAIL       VARCHAR(2)     NULL,
+DES_QUALIFICA_INAIL   VARCHAR(20)    NULL,
+FIGURA                NUMBER(6)      NULL,
+SETTORE               NUMBER(6)      NULL,
+AREA                  VARCHAR2(4)    NULL,
+CAUSA                 VARCHAR2(6)    NULL,
+SUB_CAUSA             VARCHAR2(6)    NULL,
+ATTIVITA              VARCHAR2(6)    NULL,
+AGENTE                VARCHAR2(6)    NULL,
+PARTE1                VARCHAR2(6)    NULL,
+PARTE2                VARCHAR2(6)    NULL,
+PARTE3                VARCHAR2(6)    NULL,
+VALIDA                VARCHAR2(2)    NULL,
+PROGNOSI              VARCHAR2(2)    NULL,
+GG_PROGNOSI           NUMBER(4)      NULL,
+INABILITA             VARCHAR2(1)    NULL,
+DECESSO               DATE           NULL,
+CODICE_REGIONALE_ATTIVITA VARCHAR2(2) NULL,
+SEDE_INAIL_RES        VARCHAR2(15)   NULL,
+MOD_INVIO_SOMMA       VARCHAR2(2)    NULL,
+POSS_DEC              VARCHAR2(2)    NULL,
+UTENTE                VARCHAR2(8)    NULL,
+DATA_AGG              DATE           NULL,
+IMPORTO_FISSE         NUMBER(12,2)   NULL,
+IMPORTO_ACCESSORIE    NUMBER(12,2)   NULL
+);
+
+COMMENT ON TABLE EVENTI_INFORTUNIO
+    IS 'EVIN - Eventi di Infortunio';
+
+REM
+REM     EVIN_PK
+REM
+PROMPT 
+PROMPT Creating Unique Index EVIN_PK on Table EVENTI_INFORTUNIO
+create unique index EVIN_PK on eventi_infortunio (progressivo);
+
+REM
+REM     EVIN_IK
+REM
+PROMPT 
+PROMPT Creating Index EVIN_IK on Table EVENTI_INFORTUNIO
+create index EVIN_IK on eventi_infortunio (ci);
+
+REM
+REM  End of command file
+REM
+
+

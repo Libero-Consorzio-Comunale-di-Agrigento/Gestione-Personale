@@ -1,0 +1,4 @@
+FILE=Gp4eb_ins.sql
+SET TERMOUT OFF 
+TABLE=A_MENU where voce_menu like 'PEB%'
+WHENEVER SQLERROR CONTINUE

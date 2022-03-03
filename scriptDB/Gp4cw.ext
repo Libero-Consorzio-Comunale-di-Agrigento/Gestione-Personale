@@ -1,0 +1,4 @@
+FILE=Gp4cw_ins.sql
+SET TERMOUT OFF 
+TABLE=A_MENU where voce_menu like 'PCW%'
+WHENEVER SQLERROR CONTINUE

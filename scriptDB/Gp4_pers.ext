@@ -1,0 +1,4 @@
+FILE=Gp4_ins_pers.sql 
+SET TERMOUT OFF
+TABLE=gp4_personalizzazioni delete where procedura like 'P%' order by cliente, voce_menu
+WHENEVER SQLERROR CONTINUE

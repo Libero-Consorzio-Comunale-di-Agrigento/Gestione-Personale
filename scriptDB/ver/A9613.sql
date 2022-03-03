@@ -1,0 +1,1 @@
+alter table calcoli_contabili modify risorsa_intervento varchar2(7);

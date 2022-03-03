@@ -1,0 +1,35 @@
+SET SCAN OFF
+
+REM  Objects being generated in this file are:-
+REM TABLE
+REM      DEF_ISTITUTI_PREVIDENZIALI
+REM INDEX
+REM      DISP_PK
+
+REM
+REM     DEF_ISTITUTI_PREVIDENZIALI - tabella d'appoggio per duplica dizionari previdenziali
+REM
+PROMPT 
+PROMPT Creating Table DEF_ISTITUTI_PREVIDENZIALI
+CREATE TABLE DEF_ISTITUTI_PREVIDENZIALI
+(  DISP_ID              NUMBER(3)    NOT NULL
+ , ISTITUTO             VARCHAR2(10) NOT NULL
+ , SCAGLIONE            NUMBER(2)    NOT NULL
+ , CONTR_VOCE           VARCHAR2(10)     NULL
+ , CONTR_SUB            VARCHAR2(3)      NULL
+ , RIT_VOCE             VARCHAR2(10)     NULL
+ , RIT_SUB              VARCHAR2(3)      NULL
+)
+;
+
+PROMPT Creating Unique Index DISP_PK
+CREATE UNIQUE INDEX DISP_PK ON DEF_ISTITUTI_PREVIDENZIALI
+(  DISP_ID
+)
+;
+COMMENT ON TABLE DEF_ISTITUTI_PREVIDENZIALI
+    IS 'DISP - Definizione Istituti Previdenziali';
+
+REM
+REM  End of command file
+REM

@@ -1,0 +1,4 @@
+INSERT INTO A_ERRORI ( ERRORE, DESCRIZIONE, DESCRIZIONE_AL1, DESCRIZIONE_AL2,
+PROPRIETA ) VALUES ( 
+'P05640', 'Tipo di codice bilancio inconguente con tipo voce', NULL, NULL, NULL); 
+
